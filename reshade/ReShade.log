@@ -1,0 +1,393 @@
+22:04:31:719 [13748] | INFO  | Initializing crosire's ReShade version '5.0.2.1428' (64-bit) built on '2022-02-06 04:59:34' loaded from "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\dxgi.dll" into "C:\Users\nicho\AppData\Local\FiveM\FiveM.app\data\cache\subprocess\FiveM_b2372_GTAProcess.exe" ...
+22:04:31:720 [13748] | INFO  | Registering hooks for "user32.dll" ...
+22:04:31:721 [13748] | INFO  | > Libraries loaded.
+22:04:31:721 [13748] | INFO  | > Found 14 match(es). Installing ...
+22:04:31:722 [13748] | INFO  | Registering hooks for "ws2_32.dll" ...
+22:04:31:722 [13748] | INFO  | > Libraries loaded.
+22:04:31:722 [13748] | INFO  | > Found 8 match(es). Installing ...
+22:04:31:723 [13748] | INFO  | Registering hooks for "C:\Windows\system32\d2d1.dll" ...
+22:04:31:723 [13748] | INFO  | > Delayed.
+22:04:31:724 [13748] | INFO  | Registering hooks for "C:\Windows\system32\d3d9.dll" ...
+22:04:31:724 [13748] | INFO  | > Libraries loaded.
+22:04:31:724 [13748] | INFO  | > Found 9 match(es). Installing ...
+22:04:31:725 [13748] | INFO  | Registering hooks for "C:\Windows\system32\d3d10.dll" ...
+22:04:31:725 [13748] | INFO  | > Libraries loaded.
+22:04:31:725 [13748] | INFO  | > Found 2 match(es). Installing ...
+22:04:31:726 [13748] | INFO  | Registering hooks for "C:\Windows\system32\d3d10_1.dll" ...
+22:04:31:726 [13748] | INFO  | > Libraries loaded.
+22:04:31:726 [13748] | INFO  | > Found 2 match(es). Installing ...
+22:04:31:727 [13748] | INFO  | Registering hooks for "C:\Windows\system32\d3d11.dll" ...
+22:04:31:727 [13748] | INFO  | > Libraries loaded.
+22:04:31:727 [13748] | INFO  | > Found 2 match(es). Installing ...
+22:04:31:727 [13748] | INFO  | Registering hooks for "C:\Windows\system32\d3d12.dll" ...
+22:04:31:728 [13748] | INFO  | > Delayed.
+22:04:31:730 [13748] | INFO  | Registering hooks for "C:\Windows\system32\dxgi.dll" ...
+22:04:31:731 [13748] | INFO  | > Delayed until first call to an exported function.
+22:04:31:731 [13748] | INFO  | Registering hooks for "vrclient_x64.dll" ...
+22:04:31:732 [13748] | INFO  | > Delayed.
+22:04:31:732 [13748] | INFO  | Initialized.
+22:04:33:166 [13748] | INFO  | Redirecting CreateDXGIFactory1(riid = {7B7166EC-21C7-44AE-B21A-C9AE321AE369}, ppFactory = 000000CA48D7DB20) ...
+22:04:33:167 [13748] | INFO  | Installing export hooks for "C:\Windows\system32\dxgi.dll" ...
+22:04:33:169 [13748] | INFO  | > Found 5 match(es). Installing ...
+22:04:33:172 [13748] | INFO  | Redirecting D3D11CreateDevice(pAdapter = 0000000000000000, DriverType = 1, Software = 0000000000000000, Flags = 0, pFeatureLevels = 0000000000000000, FeatureLevels = 0, SDKVersion = 7, ppDevice = 0000000000000000, pFeatureLevel = 000000CA48D7DB28, ppImmediateContext = 0000000000000000) ...
+22:04:33:172 [13748] | INFO  | > Passing on to D3D11CreateDeviceAndSwapChain:
+22:04:33:173 [13748] | INFO  | Redirecting D3D11CreateDeviceAndSwapChain(pAdapter = 0000000000000000, DriverType = 1, Software = 0000000000000000, Flags = 0, pFeatureLevels = 0000000000000000, FeatureLevels = 0, SDKVersion = 7, pSwapChainDesc = 0000000000000000, ppSwapChain = 0000000000000000, ppDevice = 0000000000000000, pFeatureLevel = 000000CA48D7DB28, ppImmediateContext = 0000000000000000) ...
+22:04:33:417 [13748] | INFO  | > Using feature level 0xb000.
+22:04:36:969 [13748] | INFO  | Redirecting CreateDXGIFactory1(riid = {7B7166EC-21C7-44AE-B21A-C9AE321AE369}, ppFactory = 000000CA48D7DBD8) ...
+22:04:36:981 [13748] | INFO  | Redirecting D3D11CreateDevice(pAdapter = 0000000000000000, DriverType = 1, Software = 0000000000000000, Flags = 0, pFeatureLevels = 0000000000000000, FeatureLevels = 0, SDKVersion = 7, ppDevice = 0000000000000000, pFeatureLevel = 000000CA48D7D9C8, ppImmediateContext = 0000000000000000) ...
+22:04:36:981 [13748] | INFO  | > Passing on to D3D11CreateDeviceAndSwapChain:
+22:04:36:982 [13748] | INFO  | Redirecting D3D11CreateDeviceAndSwapChain(pAdapter = 0000000000000000, DriverType = 1, Software = 0000000000000000, Flags = 0, pFeatureLevels = 0000000000000000, FeatureLevels = 0, SDKVersion = 7, pSwapChainDesc = 0000000000000000, ppSwapChain = 0000000000000000, ppDevice = 0000000000000000, pFeatureLevel = 000000CA48D7D9C8, ppImmediateContext = 0000000000000000) ...
+22:04:37:189 [13748] | INFO  | > Using feature level 0xb000.
+22:04:37:193 [16636] | INFO  | Redirecting RegisterClassW(lpWndClass = 000000CA53C7E8F0 { grcWindow }) ...
+22:04:37:193 [16636] | INFO  | > Adding 'CS_OWNDC' window class style flag to 'grcWindow'.
+22:04:37:533 [16636] | INFO  | Redirecting D3D11CreateDevice(pAdapter = 0000028CFF2250A0, DriverType = 0, Software = 0000000000000000, Flags = 0x20, pFeatureLevels = 000000CA53C7EA00, FeatureLevels = 3, SDKVersion = 7, ppDevice = 00007FF7A8BF0000, pFeatureLevel = 000000CA53C7F340, ppImmediateContext = 00007FF7A8BF0010) ...
+22:04:37:534 [16636] | INFO  | > Passing on to D3D11CreateDeviceAndSwapChain:
+22:04:37:535 [16636] | INFO  | Redirecting D3D11CreateDeviceAndSwapChain(pAdapter = 0000028CFF2250A0, DriverType = 0, Software = 0000000000000000, Flags = 0x20, pFeatureLevels = 000000CA53C7EA00, FeatureLevels = 3, SDKVersion = 7, pSwapChainDesc = 0000000000000000, ppSwapChain = 0000000000000000, ppDevice = 00007FF7A8BF0000, pFeatureLevel = 000000CA53C7F340, ppImmediateContext = 00007FF7A8BF0010) ...
+22:04:37:797 [16636] | INFO  | > Using feature level 0xb000.
+22:04:37:799 [16636] | INFO  | Redirecting IDXGIFactory2::CreateSwapChainForHwnd(this = 0000028CA35F88B0, pDevice = 0000028CB0776880, hWnd = 000000000003032E, pDesc = 000000CA53C7E400, pFullscreenDesc = 000000CA53C7E430, pRestrictToOutput = 0000000000000000, ppSwapChain = 000000CA53C7E280) ...
+22:04:37:800 [16636] | INFO  | > Dumping swap chain description:
+22:04:37:801 [16636] | INFO  |   +-----------------------------------------+-----------------------------------------+
+22:04:37:801 [16636] | INFO  |   | Parameter                               | Value                                   |
+22:04:37:801 [16636] | INFO  |   +-----------------------------------------+-----------------------------------------+
+22:04:37:802 [16636] | INFO  |   | Width                                   | 1920                                    |
+22:04:37:802 [16636] | INFO  |   | Height                                  | 1080                                    |
+22:04:37:802 [16636] | INFO  |   | RefreshRate                             | 0                   1                   |
+22:04:37:803 [16636] | INFO  |   | Format                                  | DXGI_FORMAT_B8G8R8A8_UNORM              |
+22:04:37:803 [16636] | INFO  |   | Stereo                                  | FALSE                                   |
+22:04:37:803 [16636] | INFO  |   | ScanlineOrdering                        | 0                                       |
+22:04:37:804 [16636] | INFO  |   | Scaling                                 | 0                                       |
+22:04:37:804 [16636] | INFO  |   | SampleCount                             | 1                                       |
+22:04:37:804 [16636] | INFO  |   | SampleQuality                           | 0                                       |
+22:04:37:805 [16636] | INFO  |   | BufferUsage                             | 0x70                                    |
+22:04:37:805 [16636] | INFO  |   | BufferCount                             | 2                                       |
+22:04:37:805 [16636] | INFO  |   | Windowed                                | TRUE                                    |
+22:04:37:806 [16636] | INFO  |   | SwapEffect                              | 0                                       |
+22:04:37:806 [16636] | INFO  |   | AlphaMode                               | 0                                       |
+22:04:37:806 [16636] | INFO  |   | Flags                                   | 0x2                                     |
+22:04:37:807 [16636] | INFO  |   +-----------------------------------------+-----------------------------------------+
+22:04:38:082 [16636] | INFO  | Running on NVIDIA GeForce RTX 3050 Laptop GPU
+22:04:41:963 [16636] | INFO  | Redirecting RegisterClassExW(lpWndClassEx = 000000CA53C7F1B0 { ImGui Platform }) ...
+22:04:41:963 [16636] | INFO  | > Adding 'CS_OWNDC' window class style flag to 'ImGui Platform'.
+22:04:42:476 [16920] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\PD80\PD80_03_Curved_Levels.fx".
+22:04:42:479 [16912] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\ASCII.fx".
+22:04:42:485 [16932] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Fubax\Letterbox.fx".
+22:04:42:486 [16936] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\luluco250\ArtisticVignette.fx".
+22:04:42:486 [16928] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\brussell\AreaCopy.fx".
+22:04:42:514 [16944] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\CRTCaligari.fx".
+22:04:42:521 [16936] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\luluco250\AspectRatioSuite.fx".
+22:04:42:518 [16912] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Border.fx".
+22:04:42:541 [16932] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Fubax\LUTTools.fx".
+22:04:42:550 [16944] | WARN  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\CRTcgwg.fx" with warnings:
+D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\CRTcgwg.fx(108, 14): warning X3206: implicit truncation of vector type
+D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\CRTcgwg.fx(109, 15): warning X3206: implicit truncation of vector type
+D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\CRTcgwg.fx(129, 16): warning X3206: implicit truncation of vector type
+D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\CRTcgwg.fx(129, 36): warning X3206: implicit truncation of vector type
+
+22:04:42:556 [16920] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\PD80\PD80_03_Filmic_Adaptation.fx".
+22:04:42:563 [16960] | WARN  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\vt220_night.fx" with warnings:
+D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\vt220_night.fx(164, 16): warning X3206: implicit truncation of vector type
+D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\vt220_night.fx(165, 14): warning X3206: implicit truncation of vector type
+D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\vt220_night.fx(166, 8): warning X3206: implicit truncation of vector type
+
+22:04:42:567 [16912] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Cartoon.fx".
+22:04:42:569 [16936] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\luluco250\Checkerboard.fx".
+22:04:42:583 [16932] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Fubax\PerfectPerspective.fx".
+22:04:42:583 [16944] | WARN  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\CRTCX.fx" with warnings:
+D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\CRTCX.fx(160, 33): warning X3206: implicit truncation of vector type
+D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\CRTCX.fx(160, 19): warning X3206: implicit truncation of vector type
+
+22:04:42:583 [16940] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\luluco250\Overlay.fx".
+22:04:42:597 [16912] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\CAS.fx".
+22:04:42:600 [16936] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\luluco250\ColorLab.fx".
+22:04:42:608 [16960] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\zfast_crt.fx".
+22:04:42:609 [16928] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\brussell\EyeAdaption.fx".
+22:04:42:613 [16932] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Fubax\PerfectPerspective2.fx".
+22:04:42:626 [16912] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\ChromaticAberration.fx".
+22:04:42:631 [16944] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\CRTEasymode.fx".
+22:04:42:637 [16920] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\PD80\PD80_03_Levels.fx".
+22:04:42:643 [16932] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Fubax\Prism.fx".
+22:04:42:652 [16912] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\ColorMatrix.fx".
+22:04:42:662 [16960] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\CorgiFX\CanvasFog.fx".
+22:04:42:665 [16948] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\MattiasCRT.fx".
+22:04:42:671 [16920] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\PD80\PD80_03_Shadows_Midtones_Highlights.fx".
+22:04:42:672 [16944] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\CRTFakeLottes.fx".
+22:04:42:672 [16932] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Fubax\SimpleGrain.fx".
+22:04:42:683 [16940] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\luluco250\PiecewiseFilmicTonemap.fx".
+22:04:42:683 [16916] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\SMAA.fx".
+22:04:42:683 [16912] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\CRT.fx".
+22:04:42:684 [16936] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\luluco250\CRT_Lottes.fx".
+22:04:42:720 [16912] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Curves.fx".
+22:04:42:722 [16932] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Fubax\SunsetFilter.fx".
+22:04:42:729 [16936] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\luluco250\CRT_Yee64.fx".
+22:04:42:729 [16960] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\CorgiFX\CanvasMask.fx".
+22:04:42:734 [16948] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\MCAmber.fx".
+22:04:42:736 [16944] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\CRTGeom.fx".
+22:04:42:741 [16916] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Splitscreen.fx".
+22:04:42:742 [16920] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\PD80\PD80_04_BlacknWhite.fx".
+22:04:42:747 [16928] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\brussell\UIDetect.fx".
+22:04:42:763 [16936] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\luluco250\CRT_Yeetron.fx".
+22:04:42:770 [16932] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Fubax\TiltShift.fx".
+22:04:42:770 [16940] | WARN  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\luluco250\Pong.fx" with warnings:
+D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\luluco250\FXShaders/Digits.fxh(827, 31): warning X3206: implicit truncation of vector type
+D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\luluco250\Pong.fx(244, 38): warning X3206: implicit truncation of vector type
+
+22:04:42:772 [16916] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Technicolor.fx".
+22:04:42:772 [16948] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\MCGreen.fx".
+22:04:42:776 [16912] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Daltonize.fx".
+22:04:42:778 [16928] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Daodan\AspectRatioComposition.fx".
+22:04:42:783 [16960] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\CorgiFX\ColorMask.fx".
+22:04:42:797 [16936] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\luluco250\Cursor.fx".
+22:04:42:815 [16960] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\CorgiFX\Flip.fx".
+22:04:42:818 [16948] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\MCOrange.fx".
+22:04:42:819 [16928] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Daodan\ColorfulPoster.fx".
+22:04:42:820 [16912] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Deband.fx".
+22:04:42:820 [16916] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Technicolor2.fx".
+22:04:42:828 [16936] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\luluco250\DepthAlpha.fx".
+22:04:42:848 [16912] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\DisplayDepth.fx".
+22:04:42:864 [13748] | WARN  | Ignoring LoadLibrary("DSOUND.DLL") call to avoid possible deadlock.
+22:04:42:868 [16936] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\luluco250\Dither.fx".
+22:04:42:868 [16940] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\luluco250\RetroFog.fx".
+22:04:42:870 [16948] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\MetaCRT.fx".
+22:04:42:880 [16920] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\PD80\PD80_04_Color_Balance.fx".
+22:04:42:880 [16944] | WARN  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\CRTHyllian.fx" with warnings:
+D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\CRTHyllian.fx(240, 24): warning X3206: implicit truncation of vector type
+D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\CRTHyllian.fx(241, 24): warning X3206: implicit truncation of vector type
+D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\CRTHyllian.fx(242, 24): warning X3206: implicit truncation of vector type
+D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\CRTHyllian.fx(243, 24): warning X3206: implicit truncation of vector type
+D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\CRTHyllian.fx(244, 24): warning X3206: implicit truncation of vector type
+D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\CRTHyllian.fx(245, 24): warning X3206: implicit truncation of vector type
+D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\CRTHyllian.fx(246, 24): warning X3206: implicit truncation of vector type
+D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\CRTHyllian.fx(247, 24): warning X3206: implicit truncation of vector type
+
+22:04:42:881 [16928] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Daodan\ColorIsolation.fx".
+22:04:42:887 [16912] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\DPX.fx".
+22:04:42:896 [16940] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\luluco250\SCurve.fx".
+22:04:42:898 [16932] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Insane-Shaders\Bessel_Bloom.fx".
+22:04:42:910 [16916] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Tonemap.fx".
+22:04:42:912 [16948] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\MMJCelShader.fx".
+22:04:42:914 [16944] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\CRTKurg.fx".
+22:04:42:916 [16912] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\FakeHDR.fx".
+22:04:42:916 [16936] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\luluco250\Flashlight.fx".
+22:04:42:926 [16928] | WARN  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Daodan\Comic.fx" with warnings:
+D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Daodan\Comic.fx(414, 33): warning X3206: implicit truncation of vector type
+D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Daodan\Comic.fx(416, 17): warning X3206: implicit truncation of vector type
+D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Daodan\Comic.fx(417, 17): warning X3206: implicit truncation of vector type
+D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Daodan\Comic.fx(418, 17): warning X3206: implicit truncation of vector type
+D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Daodan\Comic.fx(419, 17): warning X3206: implicit truncation of vector type
+D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Daodan\Comic.fx(422, 17): warning X3206: implicit truncation of vector type
+D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Daodan\Comic.fx(423, 17): warning X3206: implicit truncation of vector type
+D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Daodan\Comic.fx(424, 17): warning X3206: implicit truncation of vector type
+D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Daodan\Comic.fx(425, 17): warning X3206: implicit truncation of vector type
+
+22:04:42:947 [16916] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\UIMask.fx".
+22:04:42:948 [16948] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\nGlide_3DFX.fx".
+22:04:42:949 [16912] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\FilmGrain.fx".
+22:04:42:964 [16944] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\CRTLottes.fx".
+22:04:42:967 [16936] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\luluco250\FlexibleCA.fx".
+22:04:42:975 [16924] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Depth3D\SuperDepth3D_VR+.fx".
+22:04:42:975 [16940] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\luluco250\Sketch.fx".
+22:04:42:975 [16928] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Daodan\HotsamplingHelper.fx".
+22:04:42:993 [16960] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\CorgiFX\FreezeShot.fx".
+22:04:43:020 [16932] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Insane-Shaders\BilateralComic.fx".
+22:04:43:021 [16948] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\ntsc.fx".
+22:04:43:022 [16920] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\PD80\PD80_04_Color_Gradients.fx".
+22:04:43:024 [16912] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\FXAA.fx".
+22:04:43:033 [16944] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\CRTLottes2.fx".
+22:04:43:036 [16928] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Daodan\MeshEdges.fx".
+22:04:43:051 [16912] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Layer.fx".
+22:04:43:056 [16916] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Vibrance.fx".
+22:04:43:059 [16936] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\luluco250\FocalDOF.fx".
+22:04:43:077 [16920] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\PD80\PD80_04_Color_Isolation.fx".
+22:04:43:083 [16944] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\CRTPi.fx".
+22:04:43:084 [16912] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Levels.fx".
+22:04:43:084 [16960] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\CorgiFX\StageDepthPlus.fx".
+22:04:43:102 [16916] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Vignette.fx".
+22:04:43:118 [16912] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\LiftGammaGain.fx".
+22:04:43:140 [16940] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\luluco250\TrackingRays.fx".
+22:04:43:140 [16944] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\CRTPotatoCool.fx".
+22:04:43:149 [16912] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\LumaSharpen.fx".
+22:04:43:153 [16920] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\PD80\PD80_04_Color_Temperature.fx".
+22:04:43:158 [16936] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\luluco250\FramerateLimiter.fx".
+22:04:43:176 [16944] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\CRTPotatoWarm.fx".
+22:04:43:179 [16912] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\LUT.fx".
+22:04:43:209 [16960] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Radegast\BulgePinch.fx".
+22:04:43:212 [16912] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Monochrome.fx".
+22:04:43:228 [16920] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\PD80\PD80_04_Contrast_Brightness_Saturation.fx".
+22:04:43:252 [16912] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Nostalgia.fx".
+22:04:43:252 [16932] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Insane-Shaders\ContrastStretch.fx".
+22:04:43:270 [16960] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Radegast\Drunk.fx".
+22:04:43:281 [16936] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\luluco250\HexLensFlare.fx".
+22:04:43:282 [16944] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\CRTRefresh.fx".
+22:04:43:291 [16912] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Sepia.fx".
+22:04:43:323 [16920] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\PD80\PD80_04_Magical_Rectangle.fx".
+22:04:43:333 [16940] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\luluco250\UnrealLens.fx".
+22:04:43:350 [16932] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Insane-Shaders\DeepFry.fx".
+22:04:43:358 [16920] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\PD80\PD80_04_Saturation_Limit.fx".
+22:04:43:383 [16920] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\PD80\PD80_04_Selective_Color.fx".
+22:04:43:386 [16928] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Daodan\MultiTonePoster.fx".
+22:04:43:388 [16936] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\luluco250\LiquidLens.fx".
+22:04:43:414 [16944] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\CRTSim.fx".
+22:04:43:426 [16932] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Insane-Shaders\Dehaze.fx".
+22:04:43:428 [16960] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Radegast\SlitScan.fx".
+22:04:43:432 [16920] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\PD80\PD80_04_Selective_Color_v2.fx".
+22:04:43:462 [16944] | WARN  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\Deconverge.fx" with warnings:
+D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\Deconverge.fx(80, 17): warning X3206: implicit truncation of vector type
+D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\Deconverge.fx(81, 17): warning X3206: implicit truncation of vector type
+D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\Deconverge.fx(88, 17): warning X3206: implicit truncation of vector type
+D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\Deconverge.fx(89, 17): warning X3206: implicit truncation of vector type
+
+22:04:43:492 [16932] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Insane-Shaders\GaussianBlurCS.fx".
+22:04:43:492 [16940] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\luluco250\Unsharp.fx".
+22:04:43:506 [16920] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\PD80\PD80_04_Technicolor.fx".
+22:04:43:509 [16960] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Radegast\Swirl.fx".
+22:04:43:513 [16916] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\qUINT\qUINT_bloom.fx".
+22:04:43:523 [16944] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\Defocus.fx".
+22:04:43:549 [16940] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\luluco250\VirtualResolution.fx".
+22:04:43:568 [16940] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\luluco250\WhitepointFixer.fx".
+22:04:43:576 [16920] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\PD80\PD80_05_Sharpening.fx".
+22:04:43:577 [16948] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\NTSC_RetroArch.fx".
+22:04:43:582 [16916] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\qUINT\qUINT_deband.fx".
+22:04:43:583 [16944] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\DOSGame.fx".
+22:04:43:601 [16960] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Radegast\TinyPlanet.fx".
+22:04:43:613 [16920] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\PD80\PD80_06_Chromatic_Aberration.fx".
+22:04:43:624 [16944] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\EGAfilter.fx".
+22:04:43:638 [16932] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Insane-Shaders\LocalContrastCS.fx".
+22:04:43:656 [16920] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\PD80\PD80_06_Depth_Slicer.fx".
+22:04:43:663 [16940] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\3DFX.fx".
+22:04:43:663 [16936] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\luluco250\MagicHDR.fx".
+22:04:43:664 [16948] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\NTSC_RetroArch_NoScanlines.fx".
+22:04:43:664 [16960] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Radegast\Wave.fx".
+22:04:43:710 [16932] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Insane-Shaders\Mouse.fx".
+22:04:43:724 [16936] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\luluco250\MBMB.fx".
+22:04:43:724 [16940] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\BasicCRT.fx".
+22:04:43:724 [16944] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\GTU.fx".
+22:04:43:742 [16920] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\PD80\PD80_06_Film_Grain.fx".
+22:04:43:743 [16928] | WARN  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Daodan\RemoveTint.fx" with warnings:
+D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Daodan\RemoveTint.fx(69, 64): warning X3206: implicit truncation of vector type
+D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Daodan\RemoveTint.fx(85, 76): warning X3206: implicit truncation of vector type
+D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Daodan\RemoveTint.fx(100, 94): warning X3206: implicit truncation of vector type
+D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Daodan\RemoveTint.fx(101, 94): warning X3206: implicit truncation of vector type
+D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Daodan\RemoveTint.fx(110, 76): warning X3206: implicit truncation of vector type
+D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Daodan\RemoveTint.fx(111, 76): warning X3206: implicit truncation of vector type
+D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Daodan\RemoveTint.fx(116, 72): warning X3206: implicit truncation of vector type
+D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Daodan\RemoveTint.fx(117, 72): warning X3206: implicit truncation of vector type
+
+22:04:43:750 [16936] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\luluco250\MinimalColorGrading.fx".
+22:04:43:753 [16940] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\Cathode.fx".
+22:04:43:759 [16932] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Insane-Shaders\Oilify.fx".
+22:04:43:772 [16960] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Radegast\ZigZag.fx".
+22:04:43:781 [16936] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\luluco250\MultiFX.fx".
+22:04:43:783 [16944] | WARN  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\JPEG.fx" with warnings:
+D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\JPEG.fx(79, 29): warning X3206: implicit truncation of vector type
+
+22:04:43:791 [16940] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\cmyk_halftone_dot.fx".
+22:04:43:795 [16928] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Daodan\RetroTint.fx".
+22:04:43:824 [16940] | WARN  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\ColorMAME.fx" with warnings:
+D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\ColorMAME.fx(106, 1): warning X4576: 'PS_ColorMAME': input parameter 'vpos' semantic does not match vertex shader one
+
+22:04:43:827 [16920] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\PD80\PD80_06_Luma_Fade.fx".
+22:04:43:856 [16920] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\PD80\PD80_06_Posterize_Pixelate.fx".
+22:04:43:863 [16932] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Insane-Shaders\ReVeil.fx".
+22:04:43:863 [16960] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\CobraFX\Cobra_Mask.fx".
+22:04:43:872 [16940] | WARN  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\CoolRetroTerminal.fx" with warnings:
+D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\CoolRetroTerminal.fx(167, 20): warning X3206: implicit truncation of vector type
+D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\CoolRetroTerminal.fx(168, 21): warning X3206: implicit truncation of vector type
+D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\CoolRetroTerminal.fx(174, 25): warning X3206: implicit truncation of vector type
+D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\CoolRetroTerminal.fx(194, 24): warning X3206: implicit truncation of vector type
+
+22:04:43:887 [16916] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\qUINT\qUINT_dof.fx".
+22:04:43:899 [16940] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\CRT-Frutbunn.fx".
+22:04:43:908 [16936] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\luluco250\NeoBloom.fx".
+22:04:43:921 [16932] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Insane-Shaders\SharpContrast.fx".
+22:04:43:922 [16940] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\crt-nes-mini.fx".
+22:04:43:939 [16936] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\luluco250\NormalMap.fx".
+22:04:43:957 [16944] | WARN  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\LeiFX_OA.fx" with warnings:
+D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\LeiFX_OA.fx(121, 14): warning X3206: implicit truncation of vector type
+D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\LeiFX_OA.fx(272, 16): warning X3206: implicit truncation of vector type
+
+22:04:43:958 [16916] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\qUINT\qUINT_lightroom.fx".
+22:04:43:965 [16948] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\PAL.fx".
+22:04:43:981 [16932] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Insane-Shaders\UIMaskCreator.fx".
+22:04:43:998 [16940] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\CRT-NewPixie.fx".
+22:04:44:022 [16948] | WARN  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\Phosphor.fx" with warnings:
+D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\Phosphor.fx(42, 41): warning X3206: implicit truncation of vector type
+
+22:04:44:037 [16940] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\CRT-Yee64.fx".
+22:04:44:058 [16920] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Depth3D\SuperDepth3D.fx".
+22:04:44:063 [16948] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\PowerVR2.fx".
+22:04:44:067 [16932] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Insane-Shaders\VRS_Map.fx".
+22:04:44:080 [16940] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\CRT-Yeetron.fx".
+22:04:44:088 [16916] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\qUINT\qUINT_mxao.fx".
+22:04:44:108 [16948] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\R57_PAL.fx".
+22:04:44:118 [16916] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\qUINT\qUINT_sharp.fx".
+22:04:44:122 [16940] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\CRTAperture.fx".
+22:04:44:145 [16932] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\luluco250\AdaptiveTonemapper.fx".
+22:04:44:147 [16924] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\AstrayFX\BloomingHDR.fx".
+22:04:44:154 [16948] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\RetroCRT.fx".
+22:04:44:196 [16948] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\RGBLCD.fx".
+22:04:44:245 [16928] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Fubax\AspectRatio.fx".
+22:04:44:250 [16916] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\qUINT\qUINT_ssr.fx".
+22:04:44:257 [16948] | WARN  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\scanlines-abs.fx" with warnings:
+D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\scanlines-abs.fx(73, 1): warning X4576: 'PS_ScanlinesAbs': input parameter 'angle' semantic does not match vertex shader one
+
+22:04:44:257 [16924] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\AstrayFX\Clarity.fx".
+22:04:44:302 [16948] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\scanlines-fract.fx".
+22:04:44:308 [16948] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\Technicolor.fx".
+22:04:44:320 [16928] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Fubax\BeforeAfter.fx".
+22:04:44:331 [16916] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\PD80\PD80_01A_RT_Correct_Contrast.fx".
+22:04:44:334 [16960] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\CobraFX\ColorSort.fx".
+22:04:44:349 [16948] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\TVCRTPixels.fx".
+22:04:44:371 [16924] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\AstrayFX\Depth_Cues.fx".
+22:04:44:410 [16928] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Fubax\CheckerboardInterlace.fx".
+22:04:44:486 [16928] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Fubax\Chromakey.fx".
+22:04:44:496 [16928] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Fubax\Cursor.fx".
+22:04:44:505 [16916] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\PD80\PD80_01B_RT_Correct_Color.fx".
+22:04:44:578 [16932] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\luluco250\ArcaneBloom.fx".
+22:04:44:584 [16916] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\PD80\PD80_01_Color_Gamut.fx".
+22:04:44:596 [16928] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Fubax\FilmicAnamorphSharpen.fx".
+22:04:44:631 [16960] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\CobraFX\computeGravity.fx".
+22:04:44:645 [16928] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Fubax\FilmicSharpen.fx".
+22:04:44:687 [16960] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\CobraFX\Droste.fx".
+22:04:44:737 [16928] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Fubax\Flipbook.fx".
+22:04:44:787 [16916] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\PD80\PD80_02_Bloom.fx".
+22:04:44:810 [16924] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\AstrayFX\DLAA_Plus.fx".
+22:04:44:841 [16916] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\PD80\PD80_02_Bonus_LUT_pack.fx".
+22:04:44:874 [16928] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Fubax\Image.fx".
+22:04:44:897 [16916] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\PD80\PD80_02_Cinetools_LUT.fx".
+22:04:44:946 [16916] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\PD80\PD80_02_LUT_Creator.fx".
+22:04:44:987 [16928] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\Fubax\Interlaced.fx".
+22:04:44:995 [16916] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\PD80\PD80_03_Color_Space_Curves.fx".
+22:04:45:056 [16960] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\CobraFX\Gravity.fx".
+22:04:45:104 [16924] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\AstrayFX\Flair.fx".
+22:04:45:136 [16948] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\VHS.fx".
+22:04:45:192 [16948] | WARN  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\vt220.fx" with warnings:
+D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\vt220.fx(106, 16): warning X3206: implicit truncation of vector type
+D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\vt220.fx(107, 14): warning X3206: implicit truncation of vector type
+D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\vt220.fx(108, 8): warning X3206: implicit truncation of vector type
+
+22:04:45:207 [16960] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\CobraFX\RealLongExposure.fx".
+22:04:45:242 [16948] | WARN  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\vt220_frame.fx" with warnings:
+D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\RSRetroArch\vt220_frame.fx(80, 16): warning X3206: implicit truncation of vector type
+
+22:04:45:263 [16960] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\VRToolkit\VRToolkit.fx".
+22:04:45:351 [16924] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\AstrayFX\GloomAO.fx".
+22:04:45:409 [16924] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\AstrayFX\NFAA.fx".
+22:04:45:661 [16924] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\AstrayFX\RadiantGI.fx".
+22:04:45:730 [16924] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\AstrayFX\Smart_Sharp.fx".
+22:04:45:832 [16924] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\AstrayFX\Temporal_AA.fx".
+22:04:45:900 [16924] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\AstrayFX\Trails.fx".
+22:04:45:993 [16924] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\OtisFX\AdaptiveFog.fx".
+22:04:47:061 [16924] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\OtisFX\CinematicDOF.fx".
+22:04:47:200 [16924] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\OtisFX\DepthHaze.fx".
+22:04:47:349 [16924] | WARN  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\OtisFX\DirectionalDepthBlur.fx" with warnings:
+D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\OtisFX\DirectionalDepthBlur.fx(305, 9): warning X3206: implicit truncation of vector type
+
+22:04:47:403 [16924] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\OtisFX\Emphasize.fx".
+22:04:47:454 [16924] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\OtisFX\GoldenRatio.fx".
+22:04:47:528 [16924] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\OtisFX\MagicBorder.fx".
+22:04:47:582 [16924] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\OtisFX\MultiLUT.fx".
+22:04:47:881 [16924] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\OtisFX\PandaFX.fx".
+22:04:48:314 [16924] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\FGFX\FGFXFastCascadedSeparableBlur16X.fx".
+22:04:48:642 [16924] | INFO  | Successfully compiled "D:\SteamLibrary\steamapps\common\Grand Theft Auto V\reshade-shaders\Shaders\FGFX\FGFXLargeScalePerceptualObscuranceIrradiance.fx".
+22:04:48:972 [16636] | INFO  | Loading image files for textures ...
+22:04:52:703 [16636] | INFO  | Redirecting CreateDXGIFactory1(riid = {7B7166EC-21C7-44AE-B21A-C9AE321AE369}, ppFactory = 000000CA53C7EA28) ...
