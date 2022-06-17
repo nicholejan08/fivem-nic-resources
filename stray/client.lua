@@ -19,6 +19,7 @@ local displayHeadUI = false
 local countName = ""
 local mPhone
 local explodeAbility = false
+local edible = false
 
 ESX = nil
 
@@ -60,7 +61,6 @@ AddEventHandler('stray:getIdentifier', function(val)
             PlaySoundFrontend(-1, "OOB_Start", "GTAO_FM_Events_Soundset", 0)
             enableStrayPowers = true
             createMonitorGreen()
-            SetPedComponentVariation(ped, 0, 1, 0, 0)
         else
             TriggerEvent('nic_hud:toggleHud')
             PlaySoundFrontend(-1, "OOB_Cancel", "GTAO_FM_Events_Soundset", 0)
@@ -82,6 +82,30 @@ RegisterCommand('stray', function()
     TriggerEvent('stray:getIdentifier')
 end)
 
+RegisterCommand('straymodel', function()
+	local _source = source
+    TriggerEvent('stray:changeModel')
+end)
+
+
+RegisterNetEvent('stray:changeModel')
+AddEventHandler('stray:changeModel', function()
+    local ped = PlayerPedId()
+    local model = 'a_c_cat_01'
+
+    if IsModelInCdimage(model) and IsModelValid(model) then
+        RequestModel(model)
+        while not HasModelLoaded(model) do
+            Citizen.Wait(0)
+        end
+        SetPlayerModel(PlayerId(), model)
+        SetModelAsNoLongerNeeded(model)
+    end
+    
+    ShowNotification("Changed to ~o~Stray ~w~Model")
+    -- SetPedComponentVariation(ped, 4, 1, 0, 0)
+end)
+
 -- ******************************************************************
 
 local NearestePed = nil
@@ -96,25 +120,37 @@ Citizen.CreateThread(function()
 		local pedCoords = GetEntityCoords(ped)
         local zone = GetZoneDevant()
         local target = ESX.Game.GetClosestPed(zone, {})
+        local vTarget, vDist = ESX.Game.GetClosestVehicle(pedCoords)
+		local vCoords = GetEntityCoords(vTarget)
+        local vEngine = GetWorldPositionOfEntityBone(vTarget, GetEntityBoneIndexByName(vTarget, "engine"))
         local model = GetEntityModel(target)
-		local donut = GetClosestObjectOfType(pedCoords, 1.0, GetHashKey("p_amb_bagel_01"), false)
-		local donut2 = GetClosestObjectOfType(pedCoords, 1.0, GetHashKey("prop_amb_donut"), false)
-		local coffee = GetClosestObjectOfType(pedCoords, 1.0, GetHashKey("p_amb_coffeecup_01"), false)
-		-- local pistol = GetClosestObjectOfType(pedCoords, 1.0, GetHashKey("w_pi_pistol"), false)
-		local beer1 = GetClosestObjectOfType(pedCoords, 1.0, GetHashKey("prop_amb_40oz_02"), false)
-		local beer2 = GetClosestObjectOfType(pedCoords, 1.0, GetHashKey("prop_amb_beer_bottle"), false)
-		local beer3 = GetClosestObjectOfType(pedCoords, 1.0, GetHashKey("prop_amb_40oz_03"), false)
-		local beer4 = GetClosestObjectOfType(pedCoords, 1.0, GetHashKey("prop_cs_beer_bot_40oz"), false)
-		local beer5 = GetClosestObjectOfType(pedCoords, 1.0, GetHashKey("prop_cs_beer_bot_40oz_03"), false)
-		local juice1 = GetClosestObjectOfType(pedCoords, 1.0, GetHashKey("prop_food_bs_juice03"), false)
-		local trash = GetClosestObjectOfType(pedCoords, 1.0, GetHashKey("prop_rub_binbag_06"), false)
-		local trash2 = GetClosestObjectOfType(pedCoords, 1.0, GetHashKey("prop_rub_binbag_05"), false)
-		local trash3 = GetClosestObjectOfType(pedCoords, 1.0, GetHashKey("prop_rub_binbag_03b"), false)
-		local phone1 = GetClosestObjectOfType(pedCoords, 1.0, GetHashKey("prop_amb_phone"), false)
-		local bin1 = GetClosestObjectOfType(pedCoords, 1.0, GetHashKey("prop_bin_01a"), false)
-		local bin2 = GetClosestObjectOfType(pedCoords, 1.0, GetHashKey("prop_cs_bin_02"), false)
-		local boxes = GetClosestObjectOfType(pedCoords, 1.0, GetHashKey("prop_rub_boxpile_01"), false)
-		local hydrant = GetClosestObjectOfType(pedCoords, 1.0, GetHashKey("prop_fire_hydrant_1"), false)
+        local zoneRadius = 8.0
+		local donut = GetClosestObjectOfType(pedCoords, zoneRadius, GetHashKey("p_amb_bagel_01"), false)
+		local donut2 = GetClosestObjectOfType(pedCoords, zoneRadius, GetHashKey("prop_amb_donut"), false)
+		local coffee = GetClosestObjectOfType(pedCoords, zoneRadius, GetHashKey("p_amb_coffeecup_01"), false)
+		-- local pistol = GetClosestObjectOfType(pedCoords, zoneRadius, GetHashKey("w_pi_pistol"), false)
+		local beer1 = GetClosestObjectOfType(pedCoords, zoneRadius, GetHashKey("prop_amb_40oz_02"), false)
+		local beer2 = GetClosestObjectOfType(pedCoords, zoneRadius, GetHashKey("prop_amb_beer_bottle"), false)
+		local beer3 = GetClosestObjectOfType(pedCoords, zoneRadius, GetHashKey("prop_amb_40oz_03"), false)
+		local beer4 = GetClosestObjectOfType(pedCoords, zoneRadius, GetHashKey("prop_cs_beer_bot_40oz"), false)
+		local beer5 = GetClosestObjectOfType(pedCoords, zoneRadius, GetHashKey("prop_cs_beer_bot_40oz_03"), false)
+		local juice1 = GetClosestObjectOfType(pedCoords, zoneRadius, GetHashKey("prop_food_bs_juice03"), false)
+		local trash = GetClosestObjectOfType(pedCoords, zoneRadius, GetHashKey("prop_rub_binbag_06"), false)
+		local trash2 = GetClosestObjectOfType(pedCoords, zoneRadius, GetHashKey("prop_rub_binbag_05"), false)
+		local trash3 = GetClosestObjectOfType(pedCoords, zoneRadius, GetHashKey("prop_rub_binbag_03b"), false)
+		local trash4 = GetClosestObjectOfType(pedCoords, zoneRadius, GetHashKey("prop_rub_binbag_04"), false)
+		local phone1 = GetClosestObjectOfType(pedCoords, zoneRadius, GetHashKey("prop_amb_phone"), false)
+		local bin1 = GetClosestObjectOfType(pedCoords, zoneRadius, GetHashKey("prop_bin_01a"), false)
+		local bin2 = GetClosestObjectOfType(pedCoords, zoneRadius, GetHashKey("prop_cs_bin_02"), false)
+		local boxes = GetClosestObjectOfType(pedCoords, zoneRadius, GetHashKey("prop_rub_boxpile_01"), false)
+		local boxes2 = GetClosestObjectOfType(pedCoords, zoneRadius, GetHashKey("prop_rub_boxpile_05"), false)
+		local hydrant = GetClosestObjectOfType(pedCoords, zoneRadius, GetHashKey("prop_fire_hydrant_1"), false)
+		local cone1 = GetClosestObjectOfType(pedCoords, zoneRadius, GetHashKey("prop_mp_cone_01"), false)
+		local cone2 = GetClosestObjectOfType(pedCoords, zoneRadius, GetHashKey("prop_mp_cone_02"), false)
+		local cone3 = GetClosestObjectOfType(pedCoords, zoneRadius, GetHashKey("prop_roadcone01a"), false)
+		local cone4 = GetClosestObjectOfType(pedCoords, zoneRadius, GetHashKey("prop_roadcone01b"), false)
+		local cone5 = GetClosestObjectOfType(pedCoords, zoneRadius, GetHashKey("prop_roadcone02a"), false)
+		local cone6 = GetClosestObjectOfType(pedCoords, zoneRadius, GetHashKey("prop_roadcone02b"), false)
 
         local mainProp
         local propName = ""
@@ -152,57 +188,69 @@ Citizen.CreateThread(function()
                     consume(target)
                 end
             end
-    
-            if carry and (IsEntityAttachedToEntity(donut, ped)) then
-                if IsControlJustReleased(0, Keys['F']) then
-                    eatDonut(donut)
-                end    
-            elseif carry and (IsEntityAttachedToEntity(donut2, ped)) then
-                if IsControlJustReleased(0, Keys['F']) then
-                    eatDonut(donut2)
-                end
-            end
 
             if DoesEntityExist(trash) then
                 mainProp = trash
-                canCarry = false
                 propName = "Trash"
+                canCarry = false
                 canExplode = false
+                edible = false
             end
 
             if DoesEntityExist(trash2) then
                 mainProp = trash2
-                canCarry = false
                 propName = "Trash"
+                canCarry = false
                 canExplode = false
+                edible = false
             end
 
             if DoesEntityExist(trash3) then
                 mainProp = trash3
-                canCarry = false
                 propName = "Trash"
+                canCarry = false
                 canExplode = false
+                edible = false
+            end
+
+            if DoesEntityExist(trash4) then
+                mainProp = trash4
+                propName = "Trash"
+                canCarry = false
+                canExplode = false
+                edible = false
             end
 
             if DoesEntityExist(bin1) then
                 mainProp = bin1
-                canCarry = false
                 propName = "Trashbin"
+                canCarry = false
                 canExplode = false
+                edible = false
             end
 
             if DoesEntityExist(bin2) then
                 mainProp = bin2
-                canCarry = false
                 propName = "Trashbin"
+                canCarry = false
                 canExplode = false
+                edible = false
             end
 
             if DoesEntityExist(boxes) then
                 mainProp = boxes
-                canCarry = false
                 propName = "Box"
+                canCarry = false
                 canExplode = false
+                edible = false
+            end
+
+            if DoesEntityExist(boxes2) then
+                mainProp = boxes2
+                propName = "Box"
+                canCarry = false
+                canExplode = false
+                edible = false
             end
 
             if DoesEntityExist(donut) then
@@ -210,6 +258,7 @@ Citizen.CreateThread(function()
                 propName = "Donut"
                 canCarry = true
                 canExplode = false
+                edible = true
             end
 
             if DoesEntityExist(donut2) then
@@ -217,6 +266,13 @@ Citizen.CreateThread(function()
                 propName = "Donut"
                 canCarry = true
                 canExplode = false
+                edible = true
+            end
+    
+            if edible then
+                if IsControlJustReleased(0, Keys['F']) then
+                    eatDonut(mainProp)
+                end
             end
 
             if DoesEntityExist(coffee) then
@@ -224,6 +280,7 @@ Citizen.CreateThread(function()
                 propName = "Coffee"
                 canCarry = true
                 canExplode = false
+                edible = false
             end
 
             -- if DoesEntityExist(pistol) then
@@ -238,6 +295,7 @@ Citizen.CreateThread(function()
                 propName = "Beer"
                 canCarry = true
                 canExplode = false
+                edible = false
             end
 
             if DoesEntityExist(beer2) then
@@ -245,6 +303,7 @@ Citizen.CreateThread(function()
                 propName = "Beer"
                 canCarry = true
                 canExplode = false
+                edible = false
             end
 
             if DoesEntityExist(beer3) then
@@ -252,6 +311,7 @@ Citizen.CreateThread(function()
                 propName = "Beer"
                 canCarry = true
                 canExplode = false
+                edible = false
             end
 
             if DoesEntityExist(beer4) then
@@ -259,6 +319,7 @@ Citizen.CreateThread(function()
                 propName = "Beer"
                 canCarry = true
                 canExplode = false
+                edible = false
             end
 
             if DoesEntityExist(beer5) then
@@ -266,146 +327,113 @@ Citizen.CreateThread(function()
                 propName = "Beer"
                 canCarry = true
                 canExplode = false
+                edible = false
             end
 
-            if DoesEntityExist(hydrant) then
-                mainProp = hydrant
-                propName = "Hydrant"
+            if DoesEntityExist(cone1) then
+                mainProp = cone1
+                propName = "Traffic Cone"
                 canCarry = false
-                canExplode = true
+                canExplode = false
+                edible = false
             end
+
+            if DoesEntityExist(cone2) then
+                mainProp = cone2
+                propName = "Traffic Cone"
+                canCarry = false
+                canExplode = false
+                edible = false
+            end
+
+            if DoesEntityExist(cone3) then
+                mainProp = cone3
+                propName = "Traffic Cone"
+                canCarry = false
+                canExplode = false
+                edible = false
+            end
+
+            if DoesEntityExist(cone4) then
+                mainProp = cone4
+                propName = "Traffic Cone"
+                canCarry = false
+                canExplode = false
+                edible = false
+            end
+
+            if DoesEntityExist(cone5) then
+                mainProp = cone5
+                propName = "Traffic Cone"
+                canCarry = false
+                canExplode = false
+                edible = false
+            end
+
+            if DoesEntityExist(cone6) then
+                mainProp = cone6
+                propName = "Traffic Cone"
+                canCarry = false
+                canExplode = false
+                edible = false
+            end
+
+            -- if DoesEntityExist(hydrant) then
+            --     mainProp = hydrant
+            --     propName = "Hydrant"
+            --     canCarry = false
+            --     canExplode = true
+            -- end
 
             if DoesEntityExist(mainProp) then
                 local propCoords = GetOffsetFromEntityInWorldCoords(mainProp, 0.0, 0.0, 0.0)
                 local distanceCheck = #(pedCoords - propCoords)
                 local pCoords = GetEntityCoords(mainProp, true)
 
-                if distanceCheck < 32.0 then
-                    if not sleeping then
-                        if not canCarry then
-                            controlPrompt("~INPUT_TALK~", "Move ~o~"..propName)
-                            local multiplier = 272.0
-                            local pos = GetEntityForwardVector(target)
-
-                            if not carry then
-                                drawHoloGram(pCoords.x, pCoords.y, pCoords.z)
-                            end
-
-                            if IsControlJustReleased(0, Keys['E']) then
-                                PlaySoundFrontend(-1, "1st_Person_Transition", "PLAYER_SWITCH_CUSTOM_SOUNDSET", 0)
-                                showNonLoopParticleBone("core", "ent_sht_electrical_box", ped, 0.4, 24817)
-                                ApplyForceToEntity(mainProp, 5, pos.x*multiplier, pos.y*multiplier, pos.z*multiplier, 0,0,0, 1, false, true, true, true, true)
-                                Wait(1000)
-                            end
-                        end
-                    end
-                end
-
-                if canCarry and not carry and not canExplode then
+                if not carry then
+                    drawNear3D(pCoords)
                     drawHoloGram(pCoords.x, pCoords.y, pCoords.z)
-                    if not carry and not sleeping and not IsPedRagdoll(ped) then
-                        controlPrompt("~INPUT_TALK~", "Carry ~o~"..propName)
-                    else
-                        controlPrompt("~INPUT_TALK~", "Drop ~o~"..propName)
-                    end
-
-                elseif canExplode and not carry and not canCarry then
-                    if not carry and not sleeping and not IsPedRagdoll(ped) then
-                        controlPrompt("~INPUT_TALK~", "Explode ~o~"..propName)
-                        if IsControlJustReleased(0, Keys['E']) then                            
-                            AddExplosion(pCoords.x, pCoords.y, pCoords.z, 1, 1.0, true, false, true)
-                        end
-                    end
                 end
                 
-                if IsControlJustReleased(0, Keys['E']) then
-                    if not sleeping and not IsPedGettingUp(ped) and not IsPedRagdoll(ped) and not carry then
-
-                        if canCarry then
-                            makeEntityFaceEntity(ped, mainProp)
-                            carryProp(mainProp, 0.1, -0.04, 0.00, -70.0, 0, 0.0)
+                if not canCarry then
+                    if distanceCheck < 6.0 then
+                        drawControl3D(pCoords, "E", "Move "..propName)
+                            
+                        if IsControlJustReleased(0, Keys['E']) then
+                            moveProp(mainProp)
                         end
-                    else
-                        uncarryProp(mainProp)
-                        canCarry = false
+                    end
+                else
+                    if distanceCheck < 1.0 then
+                        if not carry then
+                            drawControl3D(pCoords, "E", "Carry "..propName)
+    
+                            if IsControlJustReleased(0, Keys['E']) then
+                                carryProp(mainProp, 0.1, -0.04, 0.00, -70.0, 0, 0.0)
+                            end
+                        else
+                            drawControl3D(pCoords, "E", "Drop "..propName)
+    
+                            if IsControlJustReleased(0, Keys['E']) then
+                                uncarryProp(mainProp)
+                            end
+                        end
                     end
                 end
             end
-        end
 
-        if target ~= GetPlayerPed(-1) and not IsPedAPlayer(target) and not IsPedHuman(target) then
-            if enableStrayPowers then
-                if model == GetHashKey("a_c_rat") or model == GetHashKey("a_c_hen") or model == GetHashKey("a_c_rabbit_01") then
-                    
-                    local coords = GetEntityCoords(target, true)
-                    local distance = ESX.Math.Round(GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1), true), coords, true), 0)                    
+            if DoesEntityExist(vTarget) then
+                
+                if vDist < 12.0 then
+                    drawHoloGram(vEngine.x, vEngine.y, vEngine.z)
+                    drawNear3D(vEngine)
 
-                    if not sleeping and not carry and IsPlayerNearEntity(coords.x, coords.y, coords.z) then
-                        local tVitals, tType, tGender = "", "", ""
-                        local tHealth = GetEntityHealth(target)
-
-                        if not IsPedHuman(target) then
-                            tType = "~g~Animal"
-                        else
-                            tType = "~o~Human"
-                        end
-
-                        if not IsPedMale(target) then
-                            tGender = "~o~Female"
-                        else
-                            tGender = "~b~Male"
-                        end
-
-                        if tHealth >= 150 then
-                            tVitals = "~g~Normal"
-                        elseif tHealth >= 80 then
-                            tVitals = "~o~Critical"
-                        elseif tHealth == 0 then
-                            tVitals = "~r~Deceased"
-                        end
-
-                        if not carry then
-                            drawHoloGram(coords.x, coords.y, coords.z)
-                            drawText3D(coords, tVitals, tType, tGender)
-
-                            if not IsEntityDead(target) then
-                                controlPrompt("~INPUT_MAP_POI~", "Electricute")
-                                                
-                                if IsControlJustPressed(0, Keys['MMB']) then
-                                    useAbility(target)
-                                end
-                            end
-                        end
-
-                        DrawMarker(21, coords.x, coords.y, coords.z+0.2, 0.0, 0.0, 0.0, 180.0, 0.0, 0.0, markerSize, markerSize, markerSize, 52, 235, 52, 255, false, true, 2, false, nil, nil, false)
-                    end
-
-                    if distance <= 0.3 then 
-                        NearestePed = target
-                        if not sleeping and not IsPedRagdoll(ped) and not carry then
-                            if GetEntityModel(model) == "a_c_hen" then
-                                controlPrompt("~INPUT_TALK~", "Carry ~b~Chicken")
-                            else
-                                controlPrompt("~INPUT_TALK~", "Carry ~b~Rat")
-                            end
-                        else
-                            if GetEntityModel(model) == "a_c_hen" then
-                                controlPrompt("~INPUT_ENTER~", "Eat ~b~Chicken")
-                            else
-                                controlPrompt("~INPUT_ENTER~", "Eat ~b~Rat")
-                            end
-                        end
-
+                    if IsPlayerFarEntity(vEngine.x, vEngine.y, vEngine.z) then
+                        drawControl3D(vEngine, "E", "Kill Engine")
+                            
                         if IsControlJustReleased(0, Keys['E']) then
-                            if not sleeping and not IsPedRagdoll(ped) and not carry then
-                                makeEntityFaceEntity(ped, target)
-                                carryAnimal(target)
-                            else
-                                uncarryAnimal(target)
-                            end
+                            destroyEngine(vTarget)
                         end
-                    else
-                        NearestePed = nil
                     end
                 end
             end
@@ -420,9 +448,18 @@ Citizen.CreateThread(function()
         Citizen.Wait(5) 
 
 		local ped = PlayerPedId()
-        local bCoords = GetWorldPositionOfEntityBone(ped, GetPedBoneIndex(ped, 24817))            
+        local hp = GetEntityHealth(ped)
+        local bCoords = GetWorldPositionOfEntityBone(ped, GetPedBoneIndex(ped, 24817))
 
         if enableStrayPowers then
+
+            if sleeping then
+                if hp < 200 then
+                    SetEntityHealth(ped, (hp+2))
+                    Wait(500)
+                end
+            end
+            
             if displayHeadUI then
     
                 local r, g, b = 0, 0, 0
@@ -473,15 +510,16 @@ Citizen.CreateThread(function()
 		local ped = PlayerPedId()
 		local pedCoords = GetEntityCoords(ped)
         local mChair
-		local chair = GetClosestObjectOfType(pedCoords, 0.8, GetHashKey("prop_table_03b_chr"), false)
-		local chair2 = GetClosestObjectOfType(pedCoords, 0.8, GetHashKey("prop_chair_01b"), false)
-		local chair3 = GetClosestObjectOfType(pedCoords, 0.8, GetHashKey("prop_bench_05"), false)
-		local chair4 = GetClosestObjectOfType(pedCoords, 0.8, GetHashKey("prop_bench_03"), false)
-		local chair5 = GetClosestObjectOfType(pedCoords, 0.8, GetHashKey("prop_bench_09"), false)
-		local chair6 = GetClosestObjectOfType(pedCoords, 0.8, GetHashKey("prop_table_04_chr"), false)
-		local chair7 = GetClosestObjectOfType(pedCoords, 0.8, GetHashKey("prop_bench_06"), false)
-		local chair8 = GetClosestObjectOfType(pedCoords, 0.8, GetHashKey("prop_bench_10"), false)
-		local chair9 = GetClosestObjectOfType(pedCoords, 0.8, GetHashKey("prop_chair_02"), false)
+        local zoneRadius = 8.0
+		local chair = GetClosestObjectOfType(pedCoords, zoneRadius, GetHashKey("prop_table_03b_chr"), false)
+		local chair2 = GetClosestObjectOfType(pedCoords, zoneRadius, GetHashKey("prop_chair_01b"), false)
+		local chair3 = GetClosestObjectOfType(pedCoords, zoneRadius, GetHashKey("prop_bench_05"), false)
+		local chair4 = GetClosestObjectOfType(pedCoords, zoneRadius, GetHashKey("prop_bench_03"), false)
+		local chair5 = GetClosestObjectOfType(pedCoords, zoneRadius, GetHashKey("prop_bench_09"), false)
+		local chair6 = GetClosestObjectOfType(pedCoords, zoneRadius, GetHashKey("prop_table_04_chr"), false)
+		local chair7 = GetClosestObjectOfType(pedCoords, zoneRadius, GetHashKey("prop_bench_06"), false)
+		local chair8 = GetClosestObjectOfType(pedCoords, zoneRadius, GetHashKey("prop_bench_10"), false)
+		local chair9 = GetClosestObjectOfType(pedCoords, zoneRadius, GetHashKey("prop_chair_02"), false)
 
         local mx, my, mz, mrx, mry, mrz = 0,0, 0.0, 0.0, 0,0, 0.0, 0.0
 
@@ -570,22 +608,28 @@ Citizen.CreateThread(function()
             if DoesEntityExist(mChair) then
 
                 local mCoords = GetEntityCoords(mChair)
+                local mCoords2 = vector3(mCoords.x, mCoords.y, mCoords.z+0.5)
+
 
                 if not sitting then
-                    drawHoloGram(mCoords.x, mCoords.y, mCoords.z+0.5)
+                    drawNear3D(mCoords2)
+                    drawHoloGram(mCoords2.x, mCoords2.y, mCoords2.z)
                 end
+
+                if IsPlayerNearChair(mCoords2.x, mCoords2.y, mCoords2.z) then
                 
-                if not sitting then
-                    controlPrompt("~INPUT_TALK~", "Sit")
-                else
-                    controlPrompt("~INPUT_TALK~", "Get Up")
-                end
-    
-                if IsControlJustReleased(0, Keys['E']) then
                     if not sitting then
-                        sitChair(mChair, mx, my, mz, mrx, mry, mrz)
+                        drawControl3D(mCoords2, "E", "Sit")
                     else
-                        getUpChair()
+                        drawControl3D(mCoords2, "E", "Get Up")
+                    end
+        
+                    if IsControlJustReleased(0, Keys['E']) then
+                        if not sitting then
+                            sitChair(mChair, mx, my, mz, mrx, mry, mrz)
+                        else
+                            getUpChair()
+                        end
                     end
                 end
             end
@@ -617,37 +661,59 @@ Citizen.CreateThread(function()
     while true do
         Citizen.Wait(5)
         local ped = PlayerPedId()
-        local pCoords = GetEntityCoords(ped, true)
         local hp = GetEntityHealth(ped)
+        local pCoords = GetEntityCoords(ped, true)
         local fx = "RampageOut"
 
         if enableStrayPowers then
             local zone = GetZoneDevant()
             local target = ESX.Game.GetClosestPed(zone, {})
+            local coords = GetEntityCoords(target, true)
+            local bCoords = GetWorldPositionOfEntityBone(target, GetPedBoneIndex(target, 24817))
             local model = GetEntityModel(target)
             local object = ESX.Game.GetClosestObject({}, zone)
             local tHealth = GetEntityHealth(target)
             local tVitals, tType, tGender = "", "", ""
 
-            if explodeAbility then
-                wType = 2
-                if IsControlJustPressed(0, Keys['MMB']) then
+            if IsControlJustPressed(0, Keys['E']) then
+                if explodeAbility then
+                    wType = 2
                     useAbility(target)
                 end
             end
 
             if target ~= GetPlayerPed(-1) and not IsPedAPlayer(target) then
                 
-                local coords = GetEntityCoords(target, true)
-                local oCoords = GetEntityCoords(object, true)
+                local boneCoords = GetWorldPositionOfEntityBone(ped, GetPedBoneIndex(ped, 24817))
                 local distance = ESX.Math.Round(GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1), true), coords, true), 0)
-                local oDistance = ESX.Math.Round(GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1), true), oCoords, true), 0)
+                
+                if DoesEntityExist(target) then
+                    if not IsPedHuman(ped) then
+                        if not carry then
+                            drawNear3D(coords)
+                            drawHoloGram(coords.x, coords.y, coords.z)
+                        end
 
-                -- if IsPlayerNearEntity(oCoords.x, oCoords.y, oCoords.z) then
-                --     drawHoloGram(oCoords.x, oCoords.y, oCoords.z)
-                -- end
+                        if IsPlayerNearEntity(coords.x, coords.y, coords.z) then
+                            if IsEntityAttachedToEntity(target, ped) then
+                                drawControl3D(coords, "E", "Drop Rat")
+                                if IsControlJustPressed(0, Keys['E']) then
+                                    uncarryAnimal(target)
+                                end
+                            else
+                                drawControl3D(coords, "E", "Carry Rat")
+                                if IsControlJustPressed(0, Keys['E']) then
+                                    carryAnimal(target)
+                                end
+                            end
+                        end
+                    else
+                        drawNear3D(bCoords)
+                        drawHoloGram(bCoords.x, bCoords.y, bCoords.z)
+                    end
+                end
 
-                if IsPlayerNearEntity(coords.x, coords.y, coords.z) then
+                if IsPlayerFarEntity(coords.x, coords.y, coords.z) then
                     
                     if not IsPedHuman(target) then
                         tType = "~g~Animal"
@@ -671,13 +737,33 @@ Citizen.CreateThread(function()
                         tVitals = "~r~Deceased"
                     end
 
-                    if IsPedHuman(target) then
-                        controlPrompt("~INPUT_MAP_POI~", "Electricute")
-                        drawHoloGram(coords.x, coords.y, coords.z)
-                        drawText3D(coords, tVitals, tType, tGender)
-                                        
-                        if IsControlJustPressed(0, Keys['MMB']) then
-                            if not explodeAbility then
+                    local actionText = ""
+
+                    if wType < 2 then
+                        if wType == 0 then
+                            actionText = "Electricute"
+                        elseif wType == 1 then
+                            actionText = "Explode Head"
+                        end
+                        
+                        if not IsPedHuman(ped) then
+                            if not carry then
+                                if not IsPlayerNearEntity(coords.x, coords.y, coords.z) then
+                                    drawControl3D(coords, "E", actionText)
+                                end
+                            end
+                        else
+                            drawControl3D(bCoords, "E", actionText)
+                        end
+                    end
+
+                    if not carry then
+                        drawText3D(boneCoords, tVitals, tType, tGender)
+                    end
+                                
+                    if IsControlJustPressed(0, Keys['E']) then
+                        if not explodeAbility then
+                            if not carry then
                                 useAbility(target)
                             end
                         end
@@ -685,26 +771,14 @@ Citizen.CreateThread(function()
 
                 end
 
-                if distance <= 12.0 then 
+                if distance <= 8.0 then 
                     NearestePed = target
                 end
-
-                if oDistance <= 12.0 then 
-                    NearesteObject = object
-                end
-            end
-
-            -- if not IsPedAPlayer(target) then
-            --     if distance < 12.5 then
-            --         ShowNotification("TEST")
-            --         -- drawHoloGram(tCoords.x, tCoords.y, tCoords.z)
-            --     end
-            -- end
-
-            if sleeping then
-                if hp < 200 then
-                    SetEntityHealth(ped, (hp+2))
-                    Wait(500)
+            else
+                if IsControlJustPressed(0, Keys['E']) then
+                    if not explodeAbility then
+                        ShowNotification("Must be near an ~b~Entity ~w~to use this ~o~Ability")
+                    end
                 end
             end
             
@@ -831,28 +905,21 @@ Citizen.CreateThread(function()
                     sleep()
                 end
             end
-
-            -- if not sleeping and not IsPedSwimming(ped) and not IsPedSwimmingUnderWater(ped) and not IsPedRagdoll(ped) and not IsPedGettingUp(ped) and not IsPedFalling(ped) then
-            --     if IsControlJustPressed(0, Keys['MMB']) then
-            --         if not propExplode then
-            --             SetPedCanRagdoll(ped, false)
-            --             local type = 70
-            --             local px, py, pz = table.unpack(GetEntityCoords(ped))
-            --             SetEntityInvincible(ped, true)
-            --             if hp >= 200 then
-            --                 showNonLoopParticle("des_tv_smash", "ent_sht_electrical_box_sp", ped, 2.0)
-            --                 AddExplosion(px, py, pz, 70, 1.0, true, false, true)
-            --                 SetPedToRagdoll(ped, 1000, -1, 0, true, true, true)
-            --             end
-            --             Wait(2000)
-            --             SetPedCanRagdoll(ped, true)
-            --             SetEntityInvincible(ped, false)
-            --         end
-            --     end
-            -- end
         end
     end
 end)
+
+function destroyEngine(vehicle)
+    local ped = PlayerPedId()
+    local pos = GetEntityForwardVector(vehicle)
+    local multiplier = 72.0
+    PlaySoundFrontend(-1, "Click", "DLC_HEIST_HACKING_SNAKE_SOUNDS", 0)
+    ApplyForceToEntity(vehicle, 1, pos.x, pos.y, pos.z*multiplier, 0,0,0, 1, false, true, true, true, true)
+    SetVehicleEngineHealth(vehicle, 300)
+    showNonLoopParticle("des_tv_smash", "ent_sht_electrical_box_sp", vehicle, 4.0)
+    showNonLoopParticle("core", "ent_sht_electrical_box", vehicle, 4.0)
+    Wait(1000)
+end
 
 function changeAbilityType(num)
     if num == 0 then
@@ -872,12 +939,20 @@ end
 function useAbility(entity)
 	local ped = PlayerPedId()
     local px, py, pz = table.unpack(GetEntityCoords(ped))
+    local bCoords = GetWorldPositionOfEntityBone(entity, GetPedBoneIndex(entity, 24817))
+    local pos = GetEntityForwardVector(entity)
+    local multiplier = 832.0
 
     if wType == 0 then
-        showNonLoopParticle("des_tv_smash", "ent_sht_electrical_box_sp", entity, 1.0)
-        showNonLoopParticleBone("core", "ent_sht_electrical_box", entity, 1.0, 31086)
-        showNonLoopParticleBone("core", "ent_sht_electrical_box", ped, 0.4, 24817)
-        SetPedToRagdoll(entity, 1000, -1, 0, true, true, true)
+        if IsPedHuman(entity) then
+            showNonLoopParticleBone("des_tv_smash", "ent_sht_electrical_box_sp", entity, 1.0, 31086)
+            showNonLoopParticleBone("core", "ent_sht_electrical_box", entity, 0.2, 31086)
+            showNonLoopParticleBone("core", "ent_sht_electrical_box", ped, 0.4, 24817)
+        else
+            showNonLoopParticle("des_tv_smash", "ent_sht_electrical_box_sp", entity, 1.0)
+            showNonLoopParticle("core", "ent_sht_electrical_box", entity, 0.2)
+            showNonLoopParticle("core", "ent_sht_electrical_box", ped, 0.4)
+        end
         if not IsEntityDead(entity) then
             SetPedDropsWeapon(entity)
             SetPedToRagdollWithFall(entity, 4000, 4000, 0, 1.0, 0.0, 0.0, 10.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
@@ -890,15 +965,33 @@ function useAbility(entity)
         AddExplosion(px, py, pz, 70, 1.0, true, false, true)
         SetPedToRagdoll(ped, 1000, -1, 0, true, true, true)
     end
+    PlaySoundFrontend(-1, "Click", "DLC_HEIST_HACKING_SNAKE_SOUNDS", 0)
     Wait(2000)
 end
 
 function killTarget(ped)
-    PlaySoundFrontend(-1, "Camera_Shoot", "Phone_Soundset_Franklin", 0)
-    showNonLoopParticle("core", "ent_sht_blood", ped, 1.0)
-    showNonLoopParticleBone("core", "blood_chopper", ped, 3.0, 31086)
-    showNonLoopParticleBone("core", "scrape_blood_car", ped, 2.0, 31086)
-    showNonLoopParticleBone("core", "blood_entry_shotgun", ped, 1.5, 31086)
+    local bCoords = GetWorldPositionOfEntityBone(ped, GetPedBoneIndex(ped, 31086))
+    local pos = GetEntityForwardVector(ped)
+    local pCoords = GetEntityCoords(ped, true)
+    local multiplier = 2.0
+    
+    if IsPedHuman(entity) then
+        -- ApplyForceToEntity(bCoords, 1, pos.x*multiplier, pos.y*multiplier, pos.z*multiplier*2.0, 0,0,0, 1, false, true, true, true, true)
+        showNonLoopParticleBone("des_tv_smash", "ent_sht_electrical_box_sp", ped, 1.0, 31086)
+        showNonLoopParticleBone("core", "ent_sht_electrical_box", ped, 1.0, 31086)
+        showNonLoopParticleBone("core", "ent_sht_blood", ped, 1.0, 31086)
+        showNonLoopParticleBone("core", "blood_chopper", ped, 3.0, 31086)
+        showNonLoopParticleBone("core", "scrape_blood_car", ped, 2.0, 31086)
+        showNonLoopParticleBone("core", "blood_entry_shotgun", ped, 1.5, 31086)
+    else
+        -- ApplyForceToEntity(pCoords, 1, pos.x*multiplier, pos.y*multiplier, pos.z*multiplier*2.0, 0,0,0, 1, false, true, true, true, true)
+        showNonLoopParticle("des_tv_smash", "ent_sht_electrical_box_sp", ped, 1.0)
+        showNonLoopParticle("core", "ent_sht_electrical_box", ped, 1.0)
+        showNonLoopParticle("core", "ent_sht_blood", ped, 1.0)
+        showNonLoopParticle("core", "blood_chopper", ped, 3.0)
+        showNonLoopParticle("core", "scrape_blood_car", ped, 2.0)
+        showNonLoopParticle("core", "blood_entry_shotgun", ped, 1.5)
+    end
     ApplyPedDamagePack(ped, "BigRunOverByVehicle", 12.0, 0.0)
     ApplyPedDamagePack(ped, "BigHitByVehicle", 12.0, 0.0)
     ApplyPedDamagePack(ped, "Fall", 12.0, 0.0)
@@ -1058,9 +1151,26 @@ function carryAnimal(entity)
     carry = true
 end
 
+function moveProp(entity)
+    local ped = PlayerPedId()
+    PlaySoundFrontend(-1, "Click", "DLC_HEIST_HACKING_SNAKE_SOUNDS", 0)
+    showNonLoopParticleBone("core", "ent_sht_electrical_box", ped, 0.4, 24817)
+    local pos = GetEntityForwardVector(entity)
+    local multiplier = 12.0
+    showNonLoopParticle("des_tv_smash", "ent_sht_electrical_box_sp", entity, 1.0)
+    ApplyForceToEntity(entity, 1, pos.x*multiplier, pos.y*multiplier, pos.z*multiplier*2.0, 0,0,0, 1, false, true, true, true, true)
+    Wait(1000)
+end
+
 function carryProp(entity, x, y, z, rotx, roty, rotz)
     local ped = PlayerPedId()
     local boneIndex = 31086
+    local pos = GetEntityForwardVector(entity)
+    local multiplier = 32.0
+    ApplyForceToEntity(entity, 1, x, y, pos.z*multiplier, 0,0,0, 1, false, true, true, true, true)
+    showNonLoopParticle("core", "ent_sht_electrical_box", entity, 0.2)
+    -- Wait(500)
+    makeEntityFaceEntity(ped, entity)
     AttachEntityToEntity(entity, ped, GetPedBoneIndex(ped, boneIndex), x, y, z, rotx, roty, rotz, 1, 1, 0, 1, 0, 1)  
     carry = true
 end
@@ -1170,7 +1280,7 @@ function jump()
     local x, y, z = table.unpack(GetEntityCoords(ped))
     -- showNonLoopParticle("core", "ent_dst_rubbish", ped, 0.5)
     showNonLoopParticle("core", "bul_rubber_dust", ped, 2.5)
-    ApplyForceToEntity(ped, 1, pos.x*multiplier, pos.y*multiplier, pos.z*-multiplier+17.0, 0,0,0, 1, false, true, true, true, true)
+    ApplyForceToEntity(ped, 1, pos.x*multiplier, pos.y*multiplier, pos.z*-multiplier+17.5, 0,0,0, 1, false, true, true, true, true)
     Wait(1000)
 end
 
@@ -1212,7 +1322,25 @@ function IsPlayerNearEntity(x, y, z)
     local playerx, playery, playerz = table.unpack(GetEntityCoords(PlayerPedId(), 0))
     local distance = GetDistanceBetweenCoords(playerx, playery, playerz, x, y, z, true)
 
-    if distance < 18.0 then
+    if distance < 1.0 then
+        return true
+    end
+end
+
+function IsPlayerNearChair(x, y, z)
+    local playerx, playery, playerz = table.unpack(GetEntityCoords(PlayerPedId(), 0))
+    local distance = GetDistanceBetweenCoords(playerx, playery, playerz, x, y, z, true)
+
+    if distance < 2.0 then
+        return true
+    end
+end
+
+function IsPlayerFarEntity(x, y, z)
+    local playerx, playery, playerz = table.unpack(GetEntityCoords(PlayerPedId(), 0))
+    local distance = GetDistanceBetweenCoords(playerx, playery, playerz, x, y, z, true)
+
+    if distance < 8.0 then
         return true
     end
 end
@@ -1259,7 +1387,7 @@ function getClosestPed(coords, ignoreList)
 end
 
 function GetZoneDevant()
-    local backwardPosition = GetOffsetFromEntityInWorldCoords(GetPlayerPed(-1), 0.0, 2.0, 0.0)
+    local backwardPosition = GetOffsetFromEntityInWorldCoords(GetPlayerPed(-1), 0.0, 8.0, 0.0)
 	return backwardPosition
 end
 
@@ -1362,7 +1490,7 @@ function drawText3D(coords, text, text2, text3)
     SetTextColour(255, 255, 255, 200)
 
     AddTextComponentString("Vital Signs: "..text)
-    DrawText(_x, _y)
+    DrawText(_x+0.04, _y)
 
     SetTextScale(fontSize, fontSize)
     SetTextFont(4)
@@ -1371,7 +1499,7 @@ function drawText3D(coords, text, text2, text3)
     SetTextColour(255, 255, 255, 200)
 
     AddTextComponentString("Type: "..text2)
-    DrawText(_x, _y+0.015)
+    DrawText(_x+0.04, _y+0.015)
 
     SetTextScale(fontSize, fontSize)
     SetTextFont(4)
@@ -1380,41 +1508,70 @@ function drawText3D(coords, text, text2, text3)
     SetTextColour(255, 255, 255, 200)
 
     AddTextComponentString("Gender: "..text3)
-    DrawText(_x, _y+0.03)
+    DrawText(_x+0.04, _y+0.03)
 
     if not HasStreamedTextureDictLoaded("CommonMenu") then
         RequestStreamedTextureDict("CommonMenu", false)
     else
-        DrawSprite("CommonMenu", "MPWeaponsCommon", _x+0.03, _y-0.022, 0.072, 0.02, 0.1, 209, 133, 33, 200)
-        DrawSprite("CommonMenu", "MPWeaponsCommon", _x+0.03, _y+0.025, 0.072, 0.076, 0.1, 0, 0, 0, 155)
+        DrawSprite("CommonMenu", "MPWeaponsCommon", _x+0.07, _y-0.022, 0.072, 0.02, 0.1, 209, 133, 33, 200)
+        DrawSprite("CommonMenu", "MPWeaponsCommon", _x+0.07, _y+0.025, 0.072, 0.076, 0.1, 0, 0, 0, 155)
 
-        DrawSprite("CommonMenu", "MPWeaponsCommon", _x+0.05, _y-0.022, 0.003, 0.006, 0.1, 255, 255, 255, 200)
-        DrawSprite("CommonMenu", "MPWeaponsCommon", _x+0.055, _y-0.022, 0.003, 0.006, 0.1, 255, 255, 255, 200)
-        DrawSprite("CommonMenu", "MPWeaponsCommon", _x+0.06, _y-0.022, 0.003, 0.006, 0.1, 255, 255, 255, 200)
+        DrawSprite("CommonMenu", "MPWeaponsCommon", _x+0.09, _y-0.022, 0.003, 0.006, 0.1, 255, 255, 255, 200)
+        DrawSprite("CommonMenu", "MPWeaponsCommon", _x+0.095, _y-0.022, 0.003, 0.006, 0.1, 255, 255, 255, 200)
+        DrawSprite("CommonMenu", "MPWeaponsCommon", _x+0.1, _y-0.022, 0.003, 0.006, 0.1, 255, 255, 255, 200)
         -- DrawSprite("CommonMenu", "MPWeaponsCommon", _x+0.056, _y+0.07, 0.01, 0.004, 0.1, 255, 255, 255, 200)
     end
 end
 
-function DrawText3Ds(x, y, z, text)
-	local onScreen,_x,_y=World3dToScreen2d(x,y,z)
+function drawControl3D(coords, str1, str2)
+    local onScreen, _x, _y = World3dToScreen2d(coords.x, coords.y, coords.z)
+    local pX, pY, pZ = table.unpack(GetGameplayCamCoords())
+    local fontSize = 0.35
 
-	if onScreen then
-		SetTextScale(0.2, 0.2)
-		SetTextFont(4)
-		SetTextProportional(1)
-		SetTextColour(255, 255, 255, 215)
-		SetTextEntry("STRING")
-		SetTextCentre(1)
-		AddTextComponentString(text)
-		DrawText(_x,_y)
+    SetTextScale(0.3, 0.3)
+    SetTextFont(2)
+    SetTextProportional(1)
+    SetTextCentre(1)
+    SetTextEntry("STRING")
+    SetTextColour(0, 0, 0, 200)
 
-		
-		if not HasStreamedTextureDictLoaded("commonmenu") or not HasStreamedTextureDictLoaded("mpawards1") then
-			RequestStreamedTextureDict("commonmenu", false)
-			RequestStreamedTextureDict("mpawards1", false)
-		else
-			DrawSprite("commonmenu", "gradient_bgd", _x, _y-0.001, 0.031, 0.04, 0.1, 0, 0, 0, 255, 0)
-			DrawSprite("mpawards1", "blowupenemiesusingcarbombs", _x, _y-0.008, 0.01, 0.017, 0.1, 255, 255, 255, 200, 0)
-		end
-	end
+    AddTextComponentString(str1)
+    DrawText(_x, _y-0.0105)
+
+    SetTextScale(fontSize, fontSize)
+    SetTextFont(4)
+    SetTextProportional(1)
+    SetTextEntry("STRING")
+    SetTextColour(255, 255, 255, 200)
+    SetTextDropShadow(0, 0, 0, 0,255)
+    SetTextEdge(1, 0, 0, 0, 255)
+    SetTextDropShadow()
+    SetTextOutline()
+
+    AddTextComponentString(str2)
+    DrawText(_x+0.01, _y-0.012)
+
+    local tDict = "mpinventory"
+
+    if not HasStreamedTextureDictLoaded(tDict) then
+        RequestStreamedTextureDict(tDict, false)
+    else
+        DrawSprite(tDict, "in_world_circle", _x, _y, 0.018, 0.031, 0.1, 0, 0, 0, 100)
+        DrawSprite(tDict, "in_world_circle", _x, _y, 0.015, 0.025, 0.1, 255, 255, 255, 255)
+    end
+end
+
+function drawNear3D(coords)
+    local onScreen, _x, _y = World3dToScreen2d(coords.x, coords.y, coords.z)
+    local pX, pY, pZ = table.unpack(GetGameplayCamCoords())
+    local fontSize = 0.35
+    
+    local tDict = "mpinventory"
+
+    if not HasStreamedTextureDictLoaded(tDict) then
+        RequestStreamedTextureDict(tDict, false)
+    else
+        DrawSprite(tDict, "in_world_circle", _x, _y, 0.009, 0.017, 0.1, 0, 0, 0, 100)
+        DrawSprite(tDict, "in_world_circle", _x, _y, 0.007, 0.013, 0.1, 255, 255, 255, 255)
+    end
 end
