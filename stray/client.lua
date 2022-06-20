@@ -6,7 +6,7 @@ local strayModelHash = 1462895032
 local vDriver
 
 -- object variables
-local gScreen, bScreen, oScreen, rScreen, mPhone, testProp
+local gScreen, bScreen, oScreen, rScreen, mPhone, testProp, fish
 
 -- boolean variables
 local enableStrayPowers = false
@@ -50,6 +50,7 @@ AddEventHandler('stray:getIdentifier', function(val)
             enableStrayPowers = true
             ShowNotification("~o~Stray ~w~made by: ~b~Nic")
             ShowNotification("You now have a chance to live as a stray cat on the streets with superpowers, enjoy!")
+            SetPedRandomComponentVariation(ped, 0)
             createMonitorGreen()
         else
             TriggerEvent('nic_hud:toggleHud')
@@ -92,7 +93,13 @@ AddEventHandler('stray:changeModel', function()
     end
     
     ShowNotification("Changed to ~o~Stray ~w~Model")
-    -- SetPedComponentVariation(ped, 4, 1, 0, 0)
+    TriggerEvent('nic_hud:toggleHud')
+    PlaySoundFrontend(-1, "OOB_Start", "GTAO_FM_Events_Soundset", 0)
+    enableStrayPowers = true
+    ShowNotification("~o~Stray ~w~made by: ~b~Nic")
+    ShowNotification("You now have a chance to live as a stray cat on the streets with superpowers, enjoy!")
+    SetPedRandomComponentVariation(ped, 0)
+    createMonitorGreen()
 end)
 
 -- ******************************************************************
@@ -160,12 +167,25 @@ Citizen.CreateThread(function()
         local markerSize = 0.1        
         
         if enableStrayPowers then
+              
+            if IsControlJustPressed(0, Keys['MMB']) then
+                if not IsEntityDead(ped) then
+                    aExplode()
+                end
+            end
 
+            if IsControlJustPressed(0, Keys['E']) then
+                if explodeAbility then
+                    wType = 2
+                    useAbility(target)
+                end
+            end
+                            
             if IsControlJustReleased(0, Keys['K']) then
-                if not DoesEntityExist(testProp) then
-                    spawnTestProp("prop_donut_02")
+                if not DoesEntityExist(fish) then
+                    spawnFish()
                 else
-                    DeleteEntity(testProp)
+                    DeleteEntity(fish)
                 end
             end
 
@@ -179,16 +199,6 @@ Citizen.CreateThread(function()
             if IsPedRagdoll(ped) then
                 DetachEntity(mainProp, true, true)
                 carry = false
-            end
-    
-            if IsEntityAttachedToEntity(target, ped) then
-                if IsPedRagdoll(ped) or IsEntityDead(ped) then
-                    uncarryAnimal(target)
-                end
-    
-                if IsControlJustReleased(0, Keys['F']) then
-                    consume(target)
-                end
             end
 
             if DoesEntityExist(trash) then
@@ -429,7 +439,7 @@ Citizen.CreateThread(function()
                                 drawControlFood3D(pCoords, "E", "Drop "..propName)
                                 
                                 if IsControlJustReleased(0, Keys['F']) then
-                                    eatDonut(mainProp)
+                                    eatEntity(mainProp)
                                 end
                             else
                                 drawControl3D(pCoords, "E", "Drop "..propName)
@@ -532,6 +542,7 @@ Citizen.CreateThread(function()
                         displayHeadUI = true
                         TriggerEvent("stray:hudTimer", 3)
                     end
+
                 elseif IsControlJustReleased(0, 14) then
                     PlaySoundFrontend(-1, "BACK", "HUD_AMMO_SHOP_SOUNDSET", 0)
                     if count > 0 then
@@ -732,19 +743,6 @@ Citizen.CreateThread(function()
             local object = ESX.Game.GetClosestObject({}, zone)
             local tHealth = GetEntityHealth(target)
             local tVitals, tType, tGender = "", "", ""
-              
-            if IsControlJustPressed(0, Keys['MMB']) then
-                if not IsEntityDead(ped) then
-                    aExplode()
-                end
-            end
-
-            if IsControlJustPressed(0, Keys['E']) then
-                if explodeAbility then
-                    wType = 2
-                    useAbility(target)
-                end
-            end
 
             if target ~= GetPlayerPed(-1) and not IsPedAPlayer(target) and not IsPedInAnyVehicle(target, false) then
                 
@@ -752,24 +750,25 @@ Citizen.CreateThread(function()
                 local distance = ESX.Math.Round(GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1), true), coords, true), 0)
                 
                 if DoesEntityExist(target) then
-                    if model == -1011537562 then
+                    if not IsPedHuman(target) then
                         if not carry then
                             drawNearFood3D(coords)
                             drawFoodHoloGram(coords.x, coords.y, coords.z)
                         end
 
                         if IsPlayerNearEntity(coords.x, coords.y, coords.z) then
-                            if model == -1011537562 then
-                                if IsEntityAttachedToEntity(target, ped) then
-                                    drawControlFood3D(coords, "E", "Drop Rat")
-                                    if IsControlJustPressed(0, Keys['E']) then
-                                        uncarryAnimal(target)
-                                    end
-                                else
-                                    drawControlFood3D(coords, "E", "Carry Rat")
-                                    if IsControlJustPressed(0, Keys['E']) then
-                                        carryAnimal(target)
-                                    end
+                            if IsEntityAttachedToEntity(target, ped) then
+                                drawControlFood3D(coords, "E", "Drop Food")
+                                if IsControlJustPressed(0, Keys['E']) then
+                                    uncarryAnimal(target)
+                                end
+                                if IsControlJustPressed(0, Keys['F']) then
+                                    eatEntity(target)
+                                end
+                            else
+                                drawControlFood3D(coords, "E", "Carry Food")
+                                if IsControlJustPressed(0, Keys['E']) then
+                                    carryAnimal(target)
                                 end
                             end
                         end
@@ -1066,6 +1065,21 @@ function accelerateVehicle(veh)
     end
 end
 
+function spawnFish()
+    local ped = PlayerPedId()
+    local model = "a_c_fish"
+    local pCoords = GetEntityCoords(ped, true)
+
+    if not DoesEntityExist(fish) then
+        RequestModel(GetHashKey(model))
+        while not HasModelLoaded(GetHashKey(model)) do
+            Wait(100)
+        end
+    end
+    fish = CreatePed(4, model, pCoords.x, pCoords.y, pCoords.z, 0, true, true)
+    SetEntityHealth(fish, 0)
+end
+
 function destroyEngine(vehicle)
     local ped = PlayerPedId()
     local pos = GetEntityForwardVector(vehicle)
@@ -1263,11 +1277,10 @@ function spawnTestProp(name)
     ShowNotification("Spawned Test Prop")
 end
 
-function eatDonut(entity)
+function eatEntity(entity)
     local ped = PlayerPedId()
     local food = GetEntityAttachedTo(ped)
     showNonLoopParticle("core", "bang_mud", entity, 0.5)
-    print(IsEntityAttachedToEntity(entity, ped))
     Wait(200)
     DeleteEntity(entity)
     SetEntityHealth(ped, 200)
