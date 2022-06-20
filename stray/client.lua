@@ -3,52 +3,40 @@
 -- ----------------------------------------------------------------------------------------------------
 
 local strayModelHash = 1462895032
+local vDriver
 
+-- object variables
+local gScreen, bScreen, oScreen, rScreen, mPhone, testProp
+
+-- boolean variables
 local enableStrayPowers = false
 local sleeping = false
 local laying = false
 local sitting = false
-local gScreen, bScreen, oScreen, rScreen
-local carry = false
-local testProp
-local canCarry = false
-local canExplode = false
-local wType, count = 0, 0
-local diplayHudTimer = 0
-local displayHeadUI = false
-local countName = ""
-local mPhone
 local explodeAbility = false
 local edible = false
+local displayHeadUI = false
+local carry = false
+local canCarry = false
+local canExplode = false
+local nearVehicle = false
+
+-- integer variables
+local wType, count, vCount, vUse = 0, 0, 0, 0
+local diplayHudTimer = 0
+
+-- string variables
+local countName = ""
 
 ESX = nil
+local NearestePed = nil
+local NearesteObject = nil
 
 local Keys = {
-    ["ESC"] = 322, ["F1"] = 288, ["F2"] = 289, ["F3"] = 170, ["F5"] = 166, ["F6"] = 167, ["F7"] = 168, ["F8"] = 169, ["F9"] = 56, ["F10"] = 57,
-    ["~"] = 243, ["1"] = 157, ["2"] = 158, ["3"] = 160, ["4"] = 164, ["5"] = 165, ["6"] = 159, ["7"] = 161, ["8"] = 162, ["9"] = 163, ["-"] = 84, ["="] = 83, ["BACKSPACE"] = 177,
-    ["TAB"] = 37, ["Q"] = 44, ["W"] = 32, ["E"] = 38, ["R"] = 45, ["T"] = 245, ["Y"] = 246, ["U"] = 303, ["P"] = 199, ["["] = 39, ["]"] = 40, ["ENTER"] = 18,
-    ["CAPS"] = 137, ["A"] = 34, ["S"] = 8, ["D"] = 9, ["F"] = 23, ["G"] = 47, ["H"] = 74, ["K"] = 311, ["L"] = 182,
-    ["LEFTSHIFT"] = 21, ["Z"] = 20, ["X"] = 73, ["C"] = 26, ["V"] = 0, ["B"] = 29, ["N"] = 249, ["M"] = 244, [","] = 82, ["."] = 81,
-    ["LEFTCTRL"] = 36, ["LEFTALT"] = 19, ["SPACE"] = 22, ["RIGHTCTRL"] = 70,
-    ["HOME"] = 213, ["PAGEUP"] = 10, ["PAGEDOWN"] = 11, ["DELETE"] = 178,
-    ["LEFT"] = 174, ["RIGHT"] = 175, ["TOP"] = 27, ["DOWN"] = 173,
-    ["NENTER"] = 201, ["N4"] = 108, ["N5"] = 60, ["N6"] = 107, ["N+"] = 96, ["N-"] = 97, ["N7"] = 117, ["N8"] = 61, ["N9"] = 118, ["MMB"] = 348
+    ["ESC"] = 322, ["F1"] = 288, ["F2"] = 289, ["F3"] = 170, ["F5"] = 166, ["F6"] = 167, ["F7"] = 168, ["F8"] = 169, ["F9"] = 56, ["F10"] = 57, ["~"] = 243, ["1"] = 157, ["2"] = 158, ["3"] = 160, ["4"] = 164, ["5"] = 165, ["6"] = 159, ["7"] = 161, ["8"] = 162, ["9"] = 163, ["-"] = 84, ["="] = 83, ["BACKSPACE"] = 177, ["TAB"] = 37, ["Q"] = 44, ["W"] = 32, ["E"] = 38, ["R"] = 45, ["T"] = 245, ["Y"] = 246, ["U"] = 303, ["P"] = 199, ["["] = 39, ["]"] = 40, ["ENTER"] = 18, ["CAPS"] = 137, ["A"] = 34, ["S"] = 8, ["D"] = 9, ["F"] = 23, ["G"] = 47, ["H"] = 74, ["K"] = 311, ["L"] = 182, ["LEFTSHIFT"] = 21, ["Z"] = 20, ["X"] = 73, ["C"] = 26, ["V"] = 0, ["B"] = 29, ["N"] = 249, ["M"] = 244, [","] = 82, ["."] = 81, ["LEFTCTRL"] = 36, ["LEFTALT"] = 19, ["SPACE"] = 22, ["RIGHTCTRL"] = 70, ["HOME"] = 213, ["PAGEUP"] = 10, ["PAGEDOWN"] = 11, ["DELETE"] = 178, ["LEFT"] = 174, ["RIGHT"] = 175, ["TOP"] = 27, ["DOWN"] = 173, ["NENTER"] = 201, ["N4"] = 108, ["N5"] = 60, ["N6"] = 107, ["N+"] = 96, ["N-"] = 97, ["N7"] = 117, ["N8"] = 61, ["N9"] = 118, ["MMB"] = 348
 }
 
-Citizen.CreateThread(function()
-	while ESX == nil do
-		TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
-		Citizen.Wait(0)
-	end
-
-	while ESX.GetPlayerData().job == nil do
-		Citizen.Wait(100)
-	end
-
-	PlayerLoaded = true
-	ESX.PlayerData = ESX.GetPlayerData()
-end)
-
+-- events
 RegisterNetEvent('stray:getIdentifier')
 AddEventHandler('stray:getIdentifier', function(val)
     local hash = GetEntityModel(PlayerPedId())
@@ -60,6 +48,8 @@ AddEventHandler('stray:getIdentifier', function(val)
             TriggerEvent('nic_hud:toggleHud')
             PlaySoundFrontend(-1, "OOB_Start", "GTAO_FM_Events_Soundset", 0)
             enableStrayPowers = true
+            ShowNotification("~o~Stray ~w~made by: ~b~Nic")
+            ShowNotification("You now have a chance to live as a stray cat on the streets with superpowers, enjoy!")
             createMonitorGreen()
         else
             TriggerEvent('nic_hud:toggleHud')
@@ -87,7 +77,6 @@ RegisterCommand('straymodel', function()
     TriggerEvent('stray:changeModel')
 end)
 
-
 RegisterNetEvent('stray:changeModel')
 AddEventHandler('stray:changeModel', function()
     local ped = PlayerPedId()
@@ -108,8 +97,20 @@ end)
 
 -- ******************************************************************
 
-local NearestePed = nil
-local NearesteObject = nil
+-- loops
+Citizen.CreateThread(function()
+	while ESX == nil do
+		TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
+		Citizen.Wait(0)
+	end
+
+	while ESX.GetPlayerData().job == nil do
+		Citizen.Wait(100)
+	end
+
+	PlayerLoaded = true
+	ESX.PlayerData = ESX.GetPlayerData()
+end)
 
 Citizen.CreateThread(function()
     while ESX == nil do
@@ -127,6 +128,7 @@ Citizen.CreateThread(function()
         local zoneRadius = 8.0
 		local donut = GetClosestObjectOfType(pedCoords, zoneRadius, GetHashKey("p_amb_bagel_01"), false)
 		local donut2 = GetClosestObjectOfType(pedCoords, zoneRadius, GetHashKey("prop_amb_donut"), false)
+		local donut3 = GetClosestObjectOfType(pedCoords, zoneRadius, GetHashKey("prop_donut_02"), false)
 		local coffee = GetClosestObjectOfType(pedCoords, zoneRadius, GetHashKey("p_amb_coffeecup_01"), false)
 		-- local pistol = GetClosestObjectOfType(pedCoords, zoneRadius, GetHashKey("w_pi_pistol"), false)
 		local beer1 = GetClosestObjectOfType(pedCoords, zoneRadius, GetHashKey("prop_amb_40oz_02"), false)
@@ -161,7 +163,7 @@ Citizen.CreateThread(function()
 
             if IsControlJustReleased(0, Keys['K']) then
                 if not DoesEntityExist(testProp) then
-                    spawnTestProp("p_amb_bagel_01")
+                    spawnTestProp("prop_donut_02")
                 else
                     DeleteEntity(testProp)
                 end
@@ -268,11 +270,13 @@ Citizen.CreateThread(function()
                 canExplode = false
                 edible = true
             end
-    
-            if edible then
-                if IsControlJustReleased(0, Keys['F']) then
-                    eatDonut(mainProp)
-                end
+
+            if DoesEntityExist(donut3) then
+                mainProp = donut3
+                propName = "Donut"
+                canCarry = true
+                canExplode = false
+                edible = true
             end
 
             if DoesEntityExist(coffee) then
@@ -391,8 +395,13 @@ Citizen.CreateThread(function()
                 local pCoords = GetEntityCoords(mainProp, true)
 
                 if not carry then
-                    drawNear3D(pCoords)
-                    drawHoloGram(pCoords.x, pCoords.y, pCoords.z)
+                    if edible then
+                        drawNearFood3D(pCoords)
+                        drawFoodHoloGram(pCoords.x, pCoords.y, pCoords.z)
+                    else
+                        drawNear3D(pCoords)
+                        drawHoloGram(pCoords.x, pCoords.y, pCoords.z)
+                    end
                 end
                 
                 if not canCarry then
@@ -406,13 +415,25 @@ Citizen.CreateThread(function()
                 else
                     if distanceCheck < 1.0 then
                         if not carry then
-                            drawControl3D(pCoords, "E", "Carry "..propName)
+                            if edible then
+                                drawControlFood3D(pCoords, "E", "Carry "..propName)
+                            else
+                                drawControl3D(pCoords, "E", "Carry "..propName)
+                            end
     
                             if IsControlJustReleased(0, Keys['E']) then
                                 carryProp(mainProp, 0.1, -0.04, 0.00, -70.0, 0, 0.0)
                             end
                         else
-                            drawControl3D(pCoords, "E", "Drop "..propName)
+                            if edible then
+                                drawControlFood3D(pCoords, "E", "Drop "..propName)
+                                
+                                if IsControlJustReleased(0, Keys['F']) then
+                                    eatDonut(mainProp)
+                                end
+                            else
+                                drawControl3D(pCoords, "E", "Drop "..propName)
+                            end
     
                             if IsControlJustReleased(0, Keys['E']) then
                                 uncarryProp(mainProp)
@@ -423,19 +444,39 @@ Citizen.CreateThread(function()
             end
 
             if DoesEntityExist(vTarget) then
-                
+                nearVehicle = true
+                local vActionText = ""                              
+
+                if vUse < 3 then
+                    if vUse == 0 then
+                        vActionText = "Accelerate"
+                    elseif vUse == 1 then
+                        vActionText = "Reverse"
+                    elseif vUse == 2 then
+                        vActionText = "Kill Engine"
+                    end
+                end
+
                 if vDist < 12.0 then
                     drawHoloGram(vEngine.x, vEngine.y, vEngine.z)
                     drawNear3D(vEngine)
 
                     if IsPlayerFarEntity(vEngine.x, vEngine.y, vEngine.z) then
-                        drawControl3D(vEngine, "E", "Kill Engine")
+                        drawControl3D(vEngine, "E", vActionText)
                             
                         if IsControlJustReleased(0, Keys['E']) then
-                            destroyEngine(vTarget)
+                            if vUse == 0 then
+                                accelerateVehicle(vTarget)
+                            elseif vUse == 1 then
+                                reverseVehicle(vTarget)
+                            elseif vUse == 2 then
+                                destroyEngine(vTarget)
+                            end
                         end
                     end
-                end
+                end  
+            else
+                nearVehicle = false
             end
         end
         Citizen.Wait(5)
@@ -485,12 +526,14 @@ Citizen.CreateThread(function()
     
             if not IsEntityDead(ped) then
                 if IsControlJustReleased(0, 15) then
-                    if count < 2 then
+                    PlaySoundFrontend(-1, "BACK", "HUD_AMMO_SHOP_SOUNDSET", 0)
+                    if count < 1 then
                         count = count + 1
                         displayHeadUI = true
                         TriggerEvent("stray:hudTimer", 3)
                     end
                 elseif IsControlJustReleased(0, 14) then
+                    PlaySoundFrontend(-1, "BACK", "HUD_AMMO_SHOP_SOUNDSET", 0)
                     if count > 0 then
                         count = count - 1
                         displayHeadUI = true
@@ -498,6 +541,21 @@ Citizen.CreateThread(function()
                     end
                 end
                 changeAbilityType(count)
+
+                if nearVehicle then
+                    if IsControlJustReleased(0, 15) then
+                        PlaySoundFrontend(-1, "BACK", "HUD_AMMO_SHOP_SOUNDSET", 0)
+                        if vCount > 0 then
+                            vCount = vCount - 1
+                        end
+                    elseif IsControlJustReleased(0, 14) then
+                        PlaySoundFrontend(-1, "BACK", "HUD_AMMO_SHOP_SOUNDSET", 0)
+                        if vCount < 2 then
+                            vCount = vCount + 1
+                        end
+                    end
+                    vUse = vCount
+                end
             end
         end
     end
@@ -610,7 +668,6 @@ Citizen.CreateThread(function()
                 local mCoords = GetEntityCoords(mChair)
                 local mCoords2 = vector3(mCoords.x, mCoords.y, mCoords.z+0.5)
 
-
                 if not sitting then
                     drawNear3D(mCoords2)
                     drawHoloGram(mCoords2.x, mCoords2.y, mCoords2.z)
@@ -668,12 +725,19 @@ Citizen.CreateThread(function()
         if enableStrayPowers then
             local zone = GetZoneDevant()
             local target = ESX.Game.GetClosestPed(zone, {})
+            local model = GetEntityModel(target)
             local coords = GetEntityCoords(target, true)
             local bCoords = GetWorldPositionOfEntityBone(target, GetPedBoneIndex(target, 24817))
             local model = GetEntityModel(target)
             local object = ESX.Game.GetClosestObject({}, zone)
             local tHealth = GetEntityHealth(target)
             local tVitals, tType, tGender = "", "", ""
+              
+            if IsControlJustPressed(0, Keys['MMB']) then
+                if not IsEntityDead(ped) then
+                    aExplode()
+                end
+            end
 
             if IsControlJustPressed(0, Keys['E']) then
                 if explodeAbility then
@@ -682,28 +746,30 @@ Citizen.CreateThread(function()
                 end
             end
 
-            if target ~= GetPlayerPed(-1) and not IsPedAPlayer(target) then
+            if target ~= GetPlayerPed(-1) and not IsPedAPlayer(target) and not IsPedInAnyVehicle(target, false) then
                 
                 local boneCoords = GetWorldPositionOfEntityBone(ped, GetPedBoneIndex(ped, 24817))
                 local distance = ESX.Math.Round(GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1), true), coords, true), 0)
                 
                 if DoesEntityExist(target) then
-                    if not IsPedHuman(ped) then
+                    if model == -1011537562 then
                         if not carry then
-                            drawNear3D(coords)
-                            drawHoloGram(coords.x, coords.y, coords.z)
+                            drawNearFood3D(coords)
+                            drawFoodHoloGram(coords.x, coords.y, coords.z)
                         end
 
                         if IsPlayerNearEntity(coords.x, coords.y, coords.z) then
-                            if IsEntityAttachedToEntity(target, ped) then
-                                drawControl3D(coords, "E", "Drop Rat")
-                                if IsControlJustPressed(0, Keys['E']) then
-                                    uncarryAnimal(target)
-                                end
-                            else
-                                drawControl3D(coords, "E", "Carry Rat")
-                                if IsControlJustPressed(0, Keys['E']) then
-                                    carryAnimal(target)
+                            if model == -1011537562 then
+                                if IsEntityAttachedToEntity(target, ped) then
+                                    drawControlFood3D(coords, "E", "Drop Rat")
+                                    if IsControlJustPressed(0, Keys['E']) then
+                                        uncarryAnimal(target)
+                                    end
+                                else
+                                    drawControlFood3D(coords, "E", "Carry Rat")
+                                    if IsControlJustPressed(0, Keys['E']) then
+                                        carryAnimal(target)
+                                    end
                                 end
                             end
                         end
@@ -741,48 +807,49 @@ Citizen.CreateThread(function()
 
                     if wType < 2 then
                         if wType == 0 then
-                            actionText = "Electricute"
+                            actionText = "Taze"
                         elseif wType == 1 then
-                            actionText = "Explode Head"
+                            actionText = "Kill"
                         end
                         
-                        if not IsPedHuman(ped) then
-                            if not carry then
-                                if not IsPlayerNearEntity(coords.x, coords.y, coords.z) then
-                                    drawControl3D(coords, "E", actionText)
+                        if not IsEntityDead(target) then
+                            if model == -1011537562 then
+                                if not carry then
+                                    if not IsPlayerNearEntity(coords.x, coords.y, coords.z) then
+                                        drawControlFood3D(coords, "E", actionText)
+                                    end
+                                end
+                            else
+                                drawControl3D(bCoords, "E", actionText)
+                            end
+                                        
+                            if IsControlJustPressed(0, Keys['E']) then
+                                if not explodeAbility then
+                                    if not carry then
+                                        useAbility(target)
+                                    end
                                 end
                             end
-                        else
-                            drawControl3D(bCoords, "E", actionText)
+                        end
+
+                        if not carry then
+                            drawText3D(boneCoords, tVitals, tType, tGender)
                         end
                     end
-
-                    if not carry then
-                        drawText3D(boneCoords, tVitals, tType, tGender)
-                    end
-                                
-                    if IsControlJustPressed(0, Keys['E']) then
-                        if not explodeAbility then
-                            if not carry then
-                                useAbility(target)
-                            end
-                        end
-                    end
-
                 end
 
                 if distance <= 8.0 then 
                     NearestePed = target
                 end
-            else
-                if IsControlJustPressed(0, Keys['E']) then
-                    if not explodeAbility then
-                        ShowNotification("Must be near an ~b~Entity ~w~to use this ~o~Ability")
-                    end
-                end
+            -- else
+            --     if IsControlJustPressed(0, Keys['E']) then
+            --         if not explodeAbility then
+            --             ShowNotification("Must be near an ~b~Entity ~w~to use this ~o~Ability")
+            --         end
+            --     end
             end
             
-            if not IsEntityDead(ped) then
+            if not IsEntityDead(ped) then  
                 
                 if hp == 200 then
                     if DoesEntityExist(gScreen) then
@@ -909,6 +976,96 @@ Citizen.CreateThread(function()
     end
 end)
 
+function aExplode()
+	local ped = PlayerPedId()
+    local px, py, pz = table.unpack(GetEntityCoords(ped))
+    PlaySoundFrontend(-1, "Click", "DLC_HEIST_HACKING_SNAKE_SOUNDS", 0)
+    showNonLoopParticle("des_tv_smash", "ent_sht_electrical_box_sp", ped, 2.0)
+    AddExplosion(px, py, pz, 70, 1.0, true, false, true)
+    SetPedToRagdoll(ped, 1000, -1, 0, true, true, true)
+    Wait(1000)
+end
+
+function reverseVehicle(veh)
+	local ped = PlayerPedId()
+    local pCoords = GetEntityCoords(ped, true)
+    local vCoords = GetEntityCoords(veh, true)
+    local model = "a_m_m_polynesian_01"
+    local boneName = GetEntityBoneIndexByName(veh, "engine")
+    local action = 22
+    local duration = 5000
+
+    PlaySoundFrontend(-1, "Click", "DLC_HEIST_HACKING_SNAKE_SOUNDS", 0)
+    showNonLoopParticleBone("des_tv_smash", "ent_sht_electrical_box_sp", veh, 1.0, GetPedBoneIndex(veh, boneName))
+    showNonLoopParticleBone("core", "ent_sht_electrical_box", veh, 1.0, GetPedBoneIndex(veh, boneName))
+
+    if IsVehicleSeatFree(veh, -1) then
+        if not DoesEntityExist(vDriver) then
+            RequestModel(GetHashKey(model))
+            while not HasModelLoaded(GetHashKey(model)) do
+                Wait(100)
+            end
+        end
+    
+        vDriver = CreatePed(4, model, pCoords.x, pCoords.y, pCoords.z, 0, true, true)
+        SetEntityInvincible(vDriver, true)
+        SetEntityVisible(vDriver, false)
+        SetBlockingOfNonTemporaryEvents(npc, false)
+        FreezeEntityPosition(vDriver, true)
+        SetPedAlertness(vDriver, 0.0)
+        TaskWarpPedIntoVehicle(vDriver, veh, -1)
+        while not IsPedInVehicle(vDriver, veh) do
+            Citizen.Wait(0)
+        end
+        TaskVehicleTempAction(vDriver, veh, action, 5000)
+        Wait(duration)
+        DeleteEntity(vDriver)
+    else
+        vDriver = GetPedInVehicleSeat(veh, -1)
+        TaskVehicleTempAction(vDriver, veh, action, 5000)
+    end
+end
+
+function accelerateVehicle(veh)
+	local ped = PlayerPedId()
+    local pCoords = GetEntityCoords(ped, true)
+    local vCoords = GetEntityCoords(veh, true)
+    local model = "a_m_m_polynesian_01"
+    local boneName = GetEntityBoneIndexByName(veh, "engine")
+    local action = 32
+    local duration = 5000
+
+    PlaySoundFrontend(-1, "Click", "DLC_HEIST_HACKING_SNAKE_SOUNDS", 0)
+    showNonLoopParticleBone("des_tv_smash", "ent_sht_electrical_box_sp", veh, 1.0, GetPedBoneIndex(veh, boneName))
+    showNonLoopParticleBone("core", "ent_sht_electrical_box", veh, 1.0, GetPedBoneIndex(veh, boneName))
+
+    if IsVehicleSeatFree(veh, -1) then
+        if not DoesEntityExist(vDriver) then
+            RequestModel(GetHashKey(model))
+            while not HasModelLoaded(GetHashKey(model)) do
+                Wait(100)
+            end
+        end
+    
+        vDriver = CreatePed(4, model, pCoords.x, pCoords.y, pCoords.z, 0, true, true)
+        SetEntityInvincible(vDriver, true)
+        SetEntityVisible(vDriver, false)
+        SetBlockingOfNonTemporaryEvents(npc, false)
+        FreezeEntityPosition(vDriver, true)
+        SetPedAlertness(vDriver, 0.0)
+        TaskWarpPedIntoVehicle(vDriver, veh, -1)
+        while not IsPedInVehicle(vDriver, veh) do
+            Citizen.Wait(0)
+        end
+        TaskVehicleTempAction(vDriver, veh, action, 5000)
+        Wait(duration)
+        DeleteEntity(vDriver)
+    else
+        vDriver = GetPedInVehicleSeat(veh, -1)
+        TaskVehicleTempAction(vDriver, veh, action, 5000)
+    end
+end
+
 function destroyEngine(vehicle)
     local ped = PlayerPedId()
     local pos = GetEntityForwardVector(vehicle)
@@ -975,8 +1132,7 @@ function killTarget(ped)
     local pCoords = GetEntityCoords(ped, true)
     local multiplier = 2.0
     
-    if IsPedHuman(entity) then
-        -- ApplyForceToEntity(bCoords, 1, pos.x*multiplier, pos.y*multiplier, pos.z*multiplier*2.0, 0,0,0, 1, false, true, true, true, true)
+    if not IsEntityDead(ped) then
         showNonLoopParticleBone("des_tv_smash", "ent_sht_electrical_box_sp", ped, 1.0, 31086)
         showNonLoopParticleBone("core", "ent_sht_electrical_box", ped, 1.0, 31086)
         showNonLoopParticleBone("core", "ent_sht_blood", ped, 1.0, 31086)
@@ -984,13 +1140,9 @@ function killTarget(ped)
         showNonLoopParticleBone("core", "scrape_blood_car", ped, 2.0, 31086)
         showNonLoopParticleBone("core", "blood_entry_shotgun", ped, 1.5, 31086)
     else
-        -- ApplyForceToEntity(pCoords, 1, pos.x*multiplier, pos.y*multiplier, pos.z*multiplier*2.0, 0,0,0, 1, false, true, true, true, true)
-        showNonLoopParticle("des_tv_smash", "ent_sht_electrical_box_sp", ped, 1.0)
-        showNonLoopParticle("core", "ent_sht_electrical_box", ped, 1.0)
-        showNonLoopParticle("core", "ent_sht_blood", ped, 1.0)
-        showNonLoopParticle("core", "blood_chopper", ped, 3.0)
-        showNonLoopParticle("core", "scrape_blood_car", ped, 2.0)
-        showNonLoopParticle("core", "blood_entry_shotgun", ped, 1.5)
+        showNonLoopParticleBone("des_tv_smash", "ent_sht_electrical_box_sp", ped, 0.5, 31086)
+        showNonLoopParticleBone("core", "ent_sht_electrical_box", ped, 0.5, 31086)
+        showNonLoopParticleBone("core", "blood_chopper", ped, 1.0, 31086)
     end
     ApplyPedDamagePack(ped, "BigRunOverByVehicle", 12.0, 0.0)
     ApplyPedDamagePack(ped, "BigHitByVehicle", 12.0, 0.0)
@@ -1113,7 +1265,9 @@ end
 
 function eatDonut(entity)
     local ped = PlayerPedId()
+    local food = GetEntityAttachedTo(ped)
     showNonLoopParticle("core", "bang_mud", entity, 0.5)
+    print(IsEntityAttachedToEntity(entity, ped))
     Wait(200)
     DeleteEntity(entity)
     SetEntityHealth(ped, 200)
@@ -1153,12 +1307,24 @@ end
 
 function moveProp(entity)
     local ped = PlayerPedId()
+    local boneIndex = 31086
+    local eCoords = GetEntityCoords(entity, true)
+    local rnd = math.random(0, 8)
     PlaySoundFrontend(-1, "Click", "DLC_HEIST_HACKING_SNAKE_SOUNDS", 0)
     showNonLoopParticleBone("core", "ent_sht_electrical_box", ped, 0.4, 24817)
     local pos = GetEntityForwardVector(entity)
     local multiplier = 12.0
     showNonLoopParticle("des_tv_smash", "ent_sht_electrical_box_sp", entity, 1.0)
     ApplyForceToEntity(entity, 1, pos.x*multiplier, pos.y*multiplier, pos.z*multiplier*2.0, 0,0,0, 1, false, true, true, true, true)
+
+    if rnd == 0 then
+        testProp = CreateObject(GetHashKey("p_amb_bagel_01"), eCoords.x, eCoords.y, eCoords.z, true,  true, true)
+        local tCoords = GetEntityCoords(testProp, true)
+        AttachEntityToEntity(testProp, entity, GetPedBoneIndex(entity, boneIndex), 0.0, 0.0, 0.0, 0.0, 0, 0.0, 1, 1, 0, 1, 0, 1)  
+        DetachEntity(testProp, true, true)
+        ApplyForceToEntity(testProp, 1, pos.x*multiplier, pos.y*multiplier, pos.z*multiplier*2.0, 0,0,0, 1, false, true, true, true, true)
+    end
+
     Wait(1000)
 end
 
@@ -1574,4 +1740,85 @@ function drawNear3D(coords)
         DrawSprite(tDict, "in_world_circle", _x, _y, 0.009, 0.017, 0.1, 0, 0, 0, 100)
         DrawSprite(tDict, "in_world_circle", _x, _y, 0.007, 0.013, 0.1, 255, 255, 255, 255)
     end
+end
+
+function drawControlFood3D(coords, str1, str2)
+    local onScreen, _x, _y = World3dToScreen2d(coords.x, coords.y, coords.z)
+    local pX, pY, pZ = table.unpack(GetGameplayCamCoords())
+    local fontSize = 0.35
+
+    SetTextScale(0.3, 0.3)
+    SetTextFont(2)
+    SetTextProportional(1)
+    SetTextCentre(1)
+    SetTextEntry("STRING")
+    SetTextOutline()
+    SetTextColour(255, 255, 255, 200)
+
+    AddTextComponentString(str1)
+    DrawText(_x, _y-0.0105)
+
+    SetTextScale(fontSize, fontSize)
+    SetTextFont(4)
+    SetTextProportional(1)
+    SetTextEntry("STRING")
+    SetTextColour(255, 255, 255, 200)
+    SetTextDropShadow(0, 0, 0, 0,255)
+    SetTextEdge(1, 0, 0, 0, 255)
+    SetTextDropShadow()
+    SetTextOutline()
+
+    AddTextComponentString(str2)
+    DrawText(_x+0.01, _y-0.012)
+
+    local tDict = "mpinventory"
+
+    if not HasStreamedTextureDictLoaded(tDict) then
+        RequestStreamedTextureDict(tDict, false)
+    else
+        DrawSprite(tDict, "in_world_circle", _x, _y, 0.018, 0.031, 0.1, 0, 0, 0, 100)
+        DrawSprite(tDict, "in_world_circle", _x, _y, 0.015, 0.025, 0.1, 36, 173, 41, 255)
+    end
+end
+
+function drawNearFood3D(coords)
+    local onScreen, _x, _y = World3dToScreen2d(coords.x, coords.y, coords.z)
+    local pX, pY, pZ = table.unpack(GetGameplayCamCoords())
+    local fontSize = 0.35
+    
+    local tDict = "mpinventory"
+
+    if not HasStreamedTextureDictLoaded(tDict) then
+        RequestStreamedTextureDict(tDict, false)
+    else
+        DrawSprite(tDict, "in_world_circle", _x, _y, 0.009, 0.017, 0.1, 0, 0, 0, 100)
+        DrawSprite(tDict, "in_world_circle", _x, _y, 0.007, 0.013, 0.1, 36, 173, 41, 255)
+    end
+end
+
+
+function drawFoodHoloGram(x, y, z)
+	local ped = PlayerPedId()
+    local bCoords = GetWorldPositionOfEntityBone(ped, GetPedBoneIndex(ped, 24817))
+    local markerSize = 0.1 
+
+    DrawLine(bCoords.x, bCoords.y, bCoords.z+0.28, x, y, z, 36, 173, 41, 100)
+
+    DrawMarker(25, bCoords.x, bCoords.y, bCoords.z+0.28, 0.0, 0.0, 0.0, 0.0, 45.0, 0.0, markerSize, markerSize, markerSize, 229, 235, 52, 100, false, false, 2, true, nil, nil, false)
+
+    DrawMarker(25, bCoords.x, bCoords.y, bCoords.z+0.28, 0.0, 0.0, 0.0, 0.0, -45.0, 0.0, markerSize, markerSize, markerSize, 229, 235, 52, 100, false, false, 2, true, nil, nil, false)
+
+    DrawMarker(25, bCoords.x, bCoords.y, bCoords.z+0.28, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, markerSize, markerSize, markerSize, 229, 235, 52, 100, false, false, 2, true, nil, nil, false)
+
+    DrawMarker(25, bCoords.x, bCoords.y, bCoords.z+0.28, 0.0, 0.0, 0.0, 0.0, 90.0, 0.0, markerSize, markerSize, markerSize, 229, 235, 52, 100, false, false, 2, true, nil, nil, false)
+
+    if not displayHeadUI then
+        DrawMarker(28, bCoords.x, bCoords.y, bCoords.z+0.28, 0.0, 0.0, 0.0, 180.0, 0.0, 0.0, 0.015, 0.015, 0.015, 255, 255, 255, 200, false, false, 2, true, nil, nil, false)
+    
+        DrawMarker(28, bCoords.x, bCoords.y, bCoords.z+0.28, 0.0, 0.0, 0.0, 180.0, 0.0, 0.0, 0.03, 0.03, 0.03, 36, 91, 209, 60, false, false, 2, true, nil, nil, false)
+    
+        DrawMarker(28, x, y, z, 0.0, 0.0, 0.0, 180.0, 0.0, 0.0, 0.012, 0.012, 0.012, 255, 255, 255, 255, false, false, 2, false, nil, nil, false)
+    end
+
+    DrawMarker(0, bCoords.x, bCoords.y, bCoords.z+0.15, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, markerSize+0.07, markerSize+0.07, markerSize, 255, 255, 255, 10, false, false, 2, true, nil, nil, false)
 end
